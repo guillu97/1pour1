@@ -12,7 +12,7 @@ import android.widget.Button;
 
 public class MainScreenActivity extends AppCompatActivity {
 
-    // test commit
+    // test commit new 1
 
     Button btnViewProducts;
     Button btnNewProduct;
