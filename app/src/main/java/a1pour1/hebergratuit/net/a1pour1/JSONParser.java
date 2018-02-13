@@ -73,7 +73,7 @@ public class JSONParser {
                 HttpGet httpGet = new HttpGet(url);
 
                 // needed to bypass the testcookie-nginx-module see here : https://stackoverflow.com/questions/31912000/byethost-server-passing-html-values-checking-your-browser-with-json-string
-                httpGet .setHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240 ");
+                httpGet.setHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240 ");
                 httpGet.addHeader("Cookie", "__test=cc46b7a92d7865894afc487712bd4b41; expires=Fri, 01-Jan-38 00:55:55 GMT; path=/");
 
 
