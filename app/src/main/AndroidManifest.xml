@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="a1pour1.hebergratuit.net.a1pour1" >
 
+    <!--  Internet Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Localisation Permission -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Needed to check when the network connection changes -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+
+
     <application
+
+
+
+
         android:configChanges="keyboardHidden|orientation"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -35,12 +51,18 @@
             android:label="Edit Product" >
         </activity>
 
+
+
+
     </application>
 
-    <!--  Internet Permissions -->
-    <uses-permission android:name="android.permission.INTERNET" />
 
-    <!-- Localisation Permission -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
+
+
+
+
+
 
 </manifest>
