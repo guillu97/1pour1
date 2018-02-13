@@ -14,6 +14,7 @@ public class MainScreenActivity extends AppCompatActivity {
 
     // test 2
     //ANTOINE TEST
+    //MACANTOINE
     Button btnViewProducts;
     Button btnNewProduct;
 
