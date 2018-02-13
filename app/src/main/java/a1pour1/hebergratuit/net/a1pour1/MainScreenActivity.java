@@ -12,7 +12,7 @@ import android.widget.Button;
 
 public class MainScreenActivity extends AppCompatActivity {
 
-    // test 3
+    // test 4
 
     Button btnViewProducts;
     Button btnNewProduct;
