@@ -13,7 +13,7 @@ import android.widget.Button;
 public class MainScreenActivity extends AppCompatActivity {
 
     // test 2
-
+    //ANTOINE TEST
     Button btnViewProducts;
     Button btnNewProduct;
 
