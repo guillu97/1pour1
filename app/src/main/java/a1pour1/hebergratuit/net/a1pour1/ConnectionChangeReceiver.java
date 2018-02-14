@@ -12,6 +12,9 @@ import android.widget.Toast;
  */
 
 
+/**
+ * this class is for network lost event
+ */
 //////////////// TO DO
 // see https://stackoverflow.com/questions/1783117/network-listener-android/1785300#1785300
 public class ConnectionChangeReceiver extends BroadcastReceiver
