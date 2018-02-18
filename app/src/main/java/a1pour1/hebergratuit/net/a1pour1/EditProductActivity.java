@@ -21,6 +21,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -57,6 +59,8 @@ public class EditProductActivity extends AppCompatActivity {
     private static final String TAG_NAME = "name";
     private static final String TAG_PRICE = "price";
     private static final String TAG_DESCRIPTION = "description";
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

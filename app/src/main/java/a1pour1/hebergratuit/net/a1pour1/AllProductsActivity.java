@@ -21,6 +21,8 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
@@ -28,10 +30,12 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.StringRequest;
+
 public class AllProductsActivity extends ListActivity {
 
     // Progress Dialog
-    private ProgressDialog pDialog;
+    //private ProgressDialog pDialog;
 
     // Creating JSON Parser object
     JSONParser jParser = new JSONParser();
@@ -47,13 +51,50 @@ public class AllProductsActivity extends ListActivity {
     private static final String TAG_PID = "productID";
     private static final String TAG_NAME = "name";
 
+
     // products JSONArray
-    JSONArray products = null;
+    private JSONArray products = null;
+
+
+
+
+    /*private String getCookieContent(String url){
+
+
+
+
+        //I met the same problem and first I used WebView to access the page and get the cookies, use that to bypass the security check of testcookie-nginx-module
+
+        myWebView = findViewById(R.id.CookieLoader);
+        myWebView.getSettings().setJavaScriptEnabled(true);
+        myWebView.loadUrl(url);
+        String cookies = CookieManager.getInstance().getCookie(url);
+        System.out.println(cookies);
+        myWebView.destroy();
+
+        return cookies;
+
+        //Then to use with Volley, i created a CustomRequest extends StringRequest and override getHeaders like this:
+        /*
+        #Override
+        public Map<String, String> getHeaders() throws AuthFailureError {
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240 ");
+            params.put("Cookie", cookies + "; expires=Fri, 1-Jan-38 06:55:55 GMT; path=/");
+            params.put("Content-Type", "application/x-www-form-urlencoded");
+            return params;
+        }
+
+    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.all_products);
+
+
+
+
 
         // see https://stackoverflow.com/questions/25093546/android-os-networkonmainthreadexception-at-android-os-strictmodeandroidblockgua
         if (android.os.Build.VERSION.SDK_INT > 9)
@@ -61,6 +102,11 @@ public class AllProductsActivity extends ListActivity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+
+
+
+
+
 
         // Hashmap for ListView
         productsList = new ArrayList<HashMap<String, String>>();
@@ -71,7 +117,7 @@ public class AllProductsActivity extends ListActivity {
         // Get listview
         ListView lv = getListView();
 
-        // on seleting single product
+        // on selecting single product
         // launching Edit Product Screen
         lv.setOnItemClickListener(new OnItemClickListener() {
 
@@ -123,16 +169,20 @@ public class AllProductsActivity extends ListActivity {
         protected void onPreExecute() {
 
 
+            /*
             super.onPreExecute();
             pDialog = new ProgressDialog(AllProductsActivity.this);
             pDialog.setMessage("Loading products. Please wait...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
             pDialog.show();
+            */
 
 
 
         }
+
+
 
         /**
          * getting All products from url
@@ -143,9 +193,16 @@ public class AllProductsActivity extends ListActivity {
 
 
 
+
+
             // getting JSON string from URL
+            //StringRequest strReq = jParser.volleyStringRequest(url_all_products);
+            // Adding String request to request queue
+            //String  REQUEST_TAG = "net.hebergratuit.1pour1.volleyJsonObjectRequest";
+            //AppSingleton.getInstance(getApplicationContext()).addToRequestQueue(strReq, REQUEST_TAG);
 
             JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
+
 
             // Check your log cat for JSON reponse
             Log.d("All Products: ", json.toString());
@@ -190,6 +247,7 @@ public class AllProductsActivity extends ListActivity {
                 e.printStackTrace();
             }
 
+
             return null;
         }
 
@@ -197,8 +255,9 @@ public class AllProductsActivity extends ListActivity {
          * After completing background task Dismiss the progress dialog
          * **/
         protected void onPostExecute(String file_url) {
+
             // dismiss the dialog after getting all products
-            pDialog.dismiss();
+            //pDialog.dismiss();
 
             // updating UI from Background Thread
             runOnUiThread(new Runnable() {
@@ -214,6 +273,7 @@ public class AllProductsActivity extends ListActivity {
                             new int[] { R.id.pid, R.id.name });
                     // updating listview
                     setListAdapter(adapter);
+
                 }
             });
 

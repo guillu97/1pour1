@@ -8,6 +8,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.WebView;
 import android.widget.Button;
 
 public class MainScreenActivity extends AppCompatActivity {
@@ -19,6 +21,9 @@ public class MainScreenActivity extends AppCompatActivity {
     Button btnViewProducts;
     Button btnNewProduct;
 
+    private WebView myWebView;
+    private static String url_all_products = "http://1pour1.hebergratuit.net/get_all_products.php";
+    static String COOKIES;
 
 
 
@@ -55,7 +60,23 @@ public class MainScreenActivity extends AppCompatActivity {
             }
         });
 
+
+        myWebView = findViewById(R.id.CookieLoader);
+        myWebView.setVisibility(View.GONE);
+        myWebView.getSettings().setJavaScriptEnabled(true);
+        myWebView.loadUrl(url_all_products);
+        String cookies = CookieManager.getInstance().getCookie(url_all_products);
+        System.out.println(cookies);
+
+        COOKIES = cookies;
+        myWebView.destroy();
+
+
     }
+
+
+
+
 
 
 }

@@ -22,6 +22,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -40,6 +42,33 @@ public class NewProductActivity extends AppCompatActivity {
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
+
+    private String getCookieContent(String url){
+
+
+        //I met the same problem and first I used WebView to access the page and get the cookies, use that to bypass the security check of testcookie-nginx-module
+
+        WebView myWebView = (WebView) findViewById(R.id.CookieLoader);
+        myWebView.getSettings().setJavaScriptEnabled(true);
+        myWebView.loadUrl(url);
+        String cookies = CookieManager.getInstance().getCookie(url);
+        System.out.println(cookies);
+        myWebView.destroy();
+
+        return cookies;
+
+        //Then to use with Volley, i created a CustomRequest extends StringRequest and override getHeaders like this:
+        /*
+        #Override
+        public Map<String, String> getHeaders() throws AuthFailureError {
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240 ");
+            params.put("Cookie", cookies + "; expires=Fri, 1-Jan-38 06:55:55 GMT; path=/");
+            params.put("Content-Type", "application/x-www-form-urlencoded");
+            return params;
+        }
+        */
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

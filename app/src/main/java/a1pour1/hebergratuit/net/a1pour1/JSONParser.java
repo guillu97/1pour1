@@ -22,19 +22,32 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.webkit.CookieManager;
+import android.webkit.WebView;
 
+import com.android.volley.Cache;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 
-public class JSONParser {
+public class JSONParser  {
 
     static InputStream is = null;
     static JSONObject jObj = null;
     static String json = "";
+
 
     // constructor
     public JSONParser() {
@@ -43,10 +56,14 @@ public class JSONParser {
 
 
 
+
+
+
     // function get json from url
     // by making HTTP POST or GET mehtod
     public JSONObject makeHttpRequest(String url, String method,
                                       List<NameValuePair> params) {
+
 
         // Making HTTP request
         try {
@@ -59,9 +76,13 @@ public class JSONParser {
                 HttpPost httpPost = new HttpPost(url);
                 httpPost.setEntity(new UrlEncodedFormEntity(params));
 
-                // needed to bypass the testcookie-nginx-module see here : https://stackoverflow.com/questions/31912000/byethost-server-passing-html-values-checking-your-browser-with-json-string
-                httpPost.setHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240 ");
-                httpPost.addHeader("Cookie", "__test=cc46b7a92d7865894afc487712bd4b41; expires=Fri, 01-Jan-38 00:55:55 GMT; path=/");
+                if(MainScreenActivity.COOKIES != null) {
+                    // needed to bypass the testcookie-nginx-module see here : https://stackoverflow.com/questions/31912000/byethost-server-passing-html-values-checking-your-browser-with-json-string
+                    httpPost.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240 ");
+                    //httpPost.addHeader("Cookie", "__test=" + getCookieContent(url) +"; expires=Fri, 01-Jan-38 00:55:55 GMT; path=/");
+                    httpPost.addHeader("Cookie", MainScreenActivity.COOKIES + "; expires=Fri, 01-Jan-38 00:55:55 GMT; path=/");
+                }
+
 
                 HttpResponse httpResponse = httpClient.execute(httpPost);
                 HttpEntity httpEntity = httpResponse.getEntity();
@@ -77,9 +98,11 @@ public class JSONParser {
 
                 HttpGet httpGet = new HttpGet(url);
 
-                // needed to bypass the testcookie-nginx-module see here : https://stackoverflow.com/questions/31912000/byethost-server-passing-html-values-checking-your-browser-with-json-string
-                httpGet.setHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240 ");
-                httpGet.addHeader("Cookie", "__test=cc46b7a92d7865894afc487712bd4b41; expires=Fri, 01-Jan-38 00:55:55 GMT; path=/");
+                if(MainScreenActivity.COOKIES != null) {
+                    // needed to bypass the testcookie-nginx-module see here : https://stackoverflow.com/questions/31912000/byethost-server-passing-html-values-checking-your-browser-with-json-string
+                    httpGet.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240 ");
+                    httpGet.addHeader("Cookie", MainScreenActivity.COOKIES + "; expires=Fri, 01-Jan-38 00:55:55 GMT; path=/");
+                }
 
 
                 HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -146,7 +169,7 @@ public class JSONParser {
             Log.d("jOBJ Line 127", json.toString());
             jObj = new JSONObject(json);
         } catch (JSONException e) {
-            Log.e("JSON Parser", "Error parsing data " + e.toString());
+            Log.e("JSON Parser", " Error parsing data " + e.toString());
         }
 
 
@@ -156,22 +179,37 @@ public class JSONParser {
     }
 
     // tests for volley module
-    // TOD DO : https://www.androidtutorialpoint.com/networking/android-volley-tutorial/
+    // TO DO : https://www.androidtutorialpoint.com/networking/android-volley-tutorial/
     // and this to bypass the nginx module   https://stackoverflow.com/questions/40806052/generating-cookie-from-website-that-implements-testcookie-nginx-module
 
 
-    /*public void volleyStringRequst(String url){
 
-        String  REQUEST_TAG = "com.androidtutorialpoint.volleyStringRequest";
+    private static final String TAG = "JSONParser";
+    //ProgressDialog progressDialog;
+
+    public StringRequest volleyStringRequest(String url){
+
+
+
+        //And that's all, do you have any other solution yet? if not you could check this :D
+
+        String  REQUEST_TAG = "net.hebergratuit.1pour1.volleyStringRequest";
+
+
         //progressDialog.setMessage("Loading...");
-        ///progressDialog.show();
+        //progressDialog.show();
+
+
+        // DEBUG
+        Log.d(TAG,"test");
 
         StringRequest strReq = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d(TAG, response.toString());
 
-                LayoutInflater li = LayoutInflater.from(MainActivity.this);
+
+                /*LayoutInflater li = LayoutInflater.from(MainActivity.this);
                 showDialogView = li.inflate(R.layout.show_dialog, null);
                 outputTextView = (TextView)showDialogView.findViewById(R.id.text_view_dialog);
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
@@ -183,27 +221,37 @@ public class JSONParser {
                         })
                         .setCancelable(false)
                         .create();
+
                 outputTextView.setText(response.toString());
                 alertDialogBuilder.show();
-                progressDialog.hide();
+                */
+               //progressDialog.hide();
+
             }
         }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                progressDialog.hide();
+                // DEBUG
+                Log.d(TAG,"test on error");
+                //progressDialog.hide();
             }
         });
-        // Adding String request to request queue
-        AppSingleton.getInstance(getApplicationContext()).addToRequestQueue(strReq, REQUEST_TAG);
+
+        return strReq;
+
+
     }
 
     public void volleyJsonObjectRequest(String url){
 
-        String  REQUEST_TAG = "com.androidtutorialpoint.volleyJsonObjectRequest";
+        /*
+        String  REQUEST_TAG = "net.hebergratuit.1pour1.volleyJsonObjectRequest";
+
         progressDialog.setMessage("Loading...");
         progressDialog.show();
+
 
         JsonObjectRequest jsonObjectReq = new JsonObjectRequest(url, null,
                 new Response.Listener<JSONObject>() {
@@ -211,6 +259,7 @@ public class JSONParser {
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, response.toString());
 
+                        /*
                         LayoutInflater li = LayoutInflater.from(MainActivity.this);
                         showDialogView = li.inflate(R.layout.show_dialog, null);
                         outputTextView = (TextView)showDialogView.findViewById(R.id.text_view_dialog);
@@ -225,31 +274,37 @@ public class JSONParser {
                                 .create();
                         outputTextView.setText(response.toString());
                         alertDialogBuilder.show();
-                        progressDialog.hide();
+
+                        //progressDialog.hide();
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                progressDialog.hide();
+                //progressDialog.hide();
             }
         });
 
         // Adding JsonObject request to request queue
-        AppSingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonObjectReq,REQUEST_TAG);
+        //AppSingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonObjectReq,REQUEST_TAG);
+        */
     }
     public void volleyJsonArrayRequest(String url){
+        /*
 
-        String  REQUEST_TAG = "com.androidtutorialpoint.volleyJsonArrayRequest";
+        String  REQUEST_TAG = "net.hebergratuit.1pour1.volleyJsonArrayRequest";
+
         progressDialog.setMessage("Loading...");
         progressDialog.show();
+
 
         JsonArrayRequest jsonArrayReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         Log.d(TAG, response.toString());
+                        /*
                         LayoutInflater li = LayoutInflater.from(MainActivity.this);
                         showDialogView = li.inflate(R.layout.show_dialog, null);
                         outputTextView = (TextView)showDialogView.findViewById(R.id.text_view_dialog);
@@ -264,20 +319,24 @@ public class JSONParser {
                                 .create();
                         outputTextView.setText(response.toString());
                         alertDialogBuilder.show();
-                        progressDialog.hide();                    }
+
+                        //progressDialog.hide();
+                    }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                progressDialog.hide();
+                //progressDialog.hide();
             }
         });
 
         // Adding JsonObject request to request queue
-        AppSingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonArrayReq, REQUEST_TAG);
+        //AppSingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonArrayReq, REQUEST_TAG);
+        */
     }
 
     public void volleyImageLoader(String url){
+        /*
         ImageLoader imageLoader = AppSingleton.getInstance(getApplicationContext()).getImageLoader();
 
         imageLoader.get(url, new ImageLoader.ImageListener() {
@@ -289,6 +348,7 @@ public class JSONParser {
             @Override
             public void onResponse(ImageLoader.ImageContainer response, boolean arg1) {
                 if (response.getBitmap() != null) {
+
 
                     LayoutInflater li = LayoutInflater.from(MainActivity.this);
                     showDialogView = li.inflate(R.layout.show_dialog, null);
@@ -304,12 +364,15 @@ public class JSONParser {
                             .create();
                     outputImageView.setImageBitmap(response.getBitmap());
                     alertDialogBuilder.show();
+
                 }
             }
         });
+        */
     }
 
     public void volleyCacheRequest(String url){
+        /*
         Cache cache = AppSingleton.getInstance(getApplicationContext()).getRequestQueue().getCache();
         Cache.Entry entry = cache.get(url);
         if(entry != null){
@@ -323,19 +386,20 @@ public class JSONParser {
         else{
 
         }
+        */
     }
 
     public void volleyInvalidateCache(String url){
-        AppSingleton.getInstance(getApplicationContext()).getRequestQueue().getCache().invalidate(url, true);
+        //AppSingleton.getInstance(getApplicationContext()).getRequestQueue().getCache().invalidate(url, true);
     }
 
     public void volleyDeleteCache(String url){
-        AppSingleton.getInstance(getApplicationContext()).getRequestQueue().getCache().remove(url);
+        //AppSingleton.getInstance(getApplicationContext()).getRequestQueue().getCache().remove(url);
     }
 
     public void volleyClearCache(){
-        AppSingleton.getInstance(getApplicationContext()).getRequestQueue().getCache().clear();
+        //AppSingleton.getInstance(getApplicationContext()).getRequestQueue().getCache().clear();
     }
-    */
+
 
 }
