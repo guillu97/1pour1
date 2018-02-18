@@ -1,11 +1,18 @@
 package a1pour1.hebergratuit.net.a1pour1;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.CookieManager;
@@ -61,17 +68,47 @@ public class MainScreenActivity extends AppCompatActivity {
         });
 
 
+
         myWebView = findViewById(R.id.CookieLoader);
         myWebView.setVisibility(View.GONE);
         myWebView.getSettings().setJavaScriptEnabled(true);
-        myWebView.loadUrl(url_all_products);
-        String cookies = CookieManager.getInstance().getCookie(url_all_products);
+
+        String cookies = null;
+
+
+
+
+
+        if(isConnectingToInternet(getApplicationContext())) {
+            myWebView.loadUrl(url_all_products);
+            cookies = CookieManager.getInstance().getCookie(url_all_products);
+        }else{
+
+            testInternetConnection.showAlertConnection(MainScreenActivity.this);
+        }
+
         System.out.println(cookies);
 
         COOKIES = cookies;
         myWebView.destroy();
 
 
+    }
+
+
+    public static boolean isConnectingToInternet(Context mContext) {
+        ConnectivityManager connectivity = (ConnectivityManager)mContext
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity != null) {
+            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            if (info != null)
+                for (int i = 0; i < info.length; i++)
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+                        return true;
+                    }
+
+        }
+        return false;
     }
 
 
