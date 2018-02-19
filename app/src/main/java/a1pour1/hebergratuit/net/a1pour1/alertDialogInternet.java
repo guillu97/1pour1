@@ -13,7 +13,7 @@ import android.provider.Settings;
 public class alertDialogInternet {
 
     public alertDialogInternet(){
-        
+
 
     }
     public static void showAlertConnection(final Context context){
