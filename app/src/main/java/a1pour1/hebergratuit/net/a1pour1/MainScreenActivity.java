@@ -1,16 +1,11 @@
 package a1pour1.hebergratuit.net.a1pour1;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.webkit.CookieManager;
-import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -26,24 +21,10 @@ public class MainScreenActivity extends AppCompatActivity {
     //Change
     Button btnViewProducts;
     Button btnNewProduct;
-    private WebView myWebView;
+    private WebView myWebView = findViewById(R.id.CookieLoader);
     // to check wifi state after
     private WifiState wifiState = new WifiState(MainScreenActivity.this);
 
-    public static boolean isConnectingToInternet(Context mContext) {
-        ConnectivityManager connectivity = (ConnectivityManager) mContext
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivity != null) {
-            NetworkInfo[] info = connectivity.getAllNetworkInfo();
-            if (info != null)
-                for (int i = 0; i < info.length; i++)
-                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
-                        return true;
-                    }
-
-        }
-        return false;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +81,6 @@ public class MainScreenActivity extends AppCompatActivity {
 
 
         if (wifiState.haveNetworkConnection()) {
-                myWebView = findViewById(R.id.CookieLoader);
                 myWebView.getSettings().setJavaScriptEnabled(true);
                 myWebView.setWebViewClient(new WebViewClient() {
                     @Override
@@ -134,7 +114,6 @@ public class MainScreenActivity extends AppCompatActivity {
     public boolean onNavigateUp() {
 
         if (wifiState.haveNetworkConnection()) {
-            myWebView = findViewById(R.id.CookieLoader);
             myWebView.getSettings().setJavaScriptEnabled(true);
             myWebView.setWebViewClient(new WebViewClient() {
                 @Override
