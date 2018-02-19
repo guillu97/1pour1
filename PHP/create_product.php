@@ -12,6 +12,13 @@
 // array for JSON response
 $response = array();
 
+ // include db connect class
+require_once "db_connect.php";
+	
+// connecting to db
+$db = new DB();
+$conn = $db->connect();
+
 
 // to get back later the json object
 echo "JSON:";
@@ -29,12 +36,7 @@ if (isset($_POST['name']) && isset($_POST['price']) && isset($_POST['description
     date_default_timezone_set('Europe/Paris');
     $date = date("Y-m-d H:i:s");
  
-    // include db connect class
-    require_once "db_connect.php";
- 	
-    // connecting to db
-    $db = new DB();
-    $conn = $db->connect();
+   
  
 
 

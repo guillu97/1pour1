@@ -76,11 +76,11 @@ public class NewProductActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(NewProductActivity.this);
-            pDialog.setMessage("Creating Product..");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
-            pDialog.show();
+            //pDialog = new ProgressDialog(NewProductActivity.this);
+            //pDialog.setMessage("Creating Product..");
+            //pDialog.setIndeterminate(false);
+            //pDialog.setCancelable(true);
+            //pDialog.show();
         }
 
         /**
@@ -102,7 +102,7 @@ public class NewProductActivity extends AppCompatActivity {
             JSONObject json = jsonParser.makeHttpRequest(url_create_product,
                     "POST", params);
 
-            // check log cat fro response
+            // check log cat for response
             Log.d("Create Response", json.toString());
 
             // check for success tag
@@ -131,7 +131,7 @@ public class NewProductActivity extends AppCompatActivity {
          * **/
         protected void onPostExecute(String file_url) {
             // dismiss the dialog once done
-            pDialog.dismiss();
+            //pDialog.dismiss();
         }
 
     }

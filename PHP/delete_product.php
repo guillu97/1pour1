@@ -10,6 +10,12 @@
 $response = array();
  
 
+// include db connect class
+require_once "db_connect.php";
+// connecting to db
+$db = new DB();
+$conn = $db->connect();
+
 // to get back later the json object
 echo "JSON:";
  
@@ -21,12 +27,9 @@ if (isset($_POST['productID'])) {
     $pid = $_POST['productID'];
 
  
-    // include db connect class
-    require_once "db_connect.php";
+
  
-    // connecting to db
-    $db = new DB();
-    $conn = $db->connect();
+
  
     // mysqli delete row with matched pid
     $sql = "DELETE FROM products WHERE productID = $pid";

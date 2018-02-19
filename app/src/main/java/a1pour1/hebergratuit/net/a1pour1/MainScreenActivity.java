@@ -25,9 +25,15 @@ public class MainScreenActivity extends AppCompatActivity {
     // to check wifi state after
     private WifiState wifiState = new WifiState(MainScreenActivity.this);
 
+    // a boolean to wait the cookie download
+    private boolean canClick = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        canClick = false;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
@@ -44,7 +50,7 @@ public class MainScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (wifiState.haveNetworkConnection()) {
+                if (wifiState.haveNetworkConnection() == true && canClick == true) {
                     // Launching All products Activity
                     Intent i = new Intent(getApplicationContext(), AllProductsActivity.class);
                     startActivity(i);
@@ -62,7 +68,7 @@ public class MainScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (wifiState.haveNetworkConnection()) {
+                if (wifiState.haveNetworkConnection() == true && canClick == true) {
                     // Launching create new product activity
                     Intent i = new Intent(getApplicationContext(), NewProductActivity.class);
                     startActivity(i);
@@ -97,6 +103,8 @@ public class MainScreenActivity extends AppCompatActivity {
                         super.onPageFinished(view, url);
                         COOKIES = CookieManager.getInstance().getCookie(url_all_products);
                         Log.d("MainScreenActivity", "In Mobile: Cookies: " + COOKIES);
+                        canClick = true;
+
                     }
                 });
 
@@ -113,6 +121,7 @@ public class MainScreenActivity extends AppCompatActivity {
 
     @Override
     public boolean onNavigateUp() {
+        canClick = false;
 
         if (wifiState.haveNetworkConnection()) {
             
@@ -132,6 +141,7 @@ public class MainScreenActivity extends AppCompatActivity {
                     super.onPageFinished(view, url);
                     COOKIES = CookieManager.getInstance().getCookie(url_all_products);
                     Log.d("MainScreenActivity", "In Mobile: Cookies: " + COOKIES);
+                    canClick = true;
                 }
             });
 
