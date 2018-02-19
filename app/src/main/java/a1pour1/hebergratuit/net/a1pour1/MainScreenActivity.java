@@ -19,10 +19,9 @@ public class MainScreenActivity extends AppCompatActivity {
     //Guillu TEST
     //MACANTOINE
     //Change
-    //
     Button btnViewProducts;
     Button btnNewProduct;
-    private WebView myWebView = findViewById(R.id.CookieLoader);
+    private WebView myWebView;
     // to check wifi state after
     private WifiState wifiState = new WifiState(MainScreenActivity.this);
 
@@ -82,6 +81,7 @@ public class MainScreenActivity extends AppCompatActivity {
 
 
         if (wifiState.haveNetworkConnection()) {
+                myWebView = findViewById(R.id.CookieLoader);
                 myWebView.getSettings().setJavaScriptEnabled(true);
                 myWebView.setWebViewClient(new WebViewClient() {
                     @Override
@@ -115,6 +115,7 @@ public class MainScreenActivity extends AppCompatActivity {
     public boolean onNavigateUp() {
 
         if (wifiState.haveNetworkConnection()) {
+            myWebView = findViewById(R.id.CookieLoader);
             myWebView.getSettings().setJavaScriptEnabled(true);
             myWebView.setWebViewClient(new WebViewClient() {
                 @Override
