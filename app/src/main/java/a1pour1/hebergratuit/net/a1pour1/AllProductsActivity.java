@@ -4,17 +4,7 @@ package a1pour1.hebergratuit.net.a1pour1;
  * Created by SPORE on 06/02/2018.
  */
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.ListActivity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -28,10 +18,19 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import org.apache.http.NameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class AllProductsActivity extends ListActivity {
 
     // Progress Dialog
-    private ProgressDialog pDialog;
+    //private ProgressDialog pDialog;
 
     // Creating JSON Parser object
     JSONParser jParser = new JSONParser();
@@ -47,13 +46,22 @@ public class AllProductsActivity extends ListActivity {
     private static final String TAG_PID = "productID";
     private static final String TAG_NAME = "name";
 
+
     // products JSONArray
-    JSONArray products = null;
+    private JSONArray products = null;
+
+
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.all_products);
+
+
+
+
 
         // see https://stackoverflow.com/questions/25093546/android-os-networkonmainthreadexception-at-android-os-strictmodeandroidblockgua
         if (android.os.Build.VERSION.SDK_INT > 9)
@@ -61,6 +69,11 @@ public class AllProductsActivity extends ListActivity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+
+
+
+
+
 
         // Hashmap for ListView
         productsList = new ArrayList<HashMap<String, String>>();
@@ -71,7 +84,7 @@ public class AllProductsActivity extends ListActivity {
         // Get listview
         ListView lv = getListView();
 
-        // on seleting single product
+        // on selecting single product
         // launching Edit Product Screen
         lv.setOnItemClickListener(new OnItemClickListener() {
 
@@ -123,16 +136,20 @@ public class AllProductsActivity extends ListActivity {
         protected void onPreExecute() {
 
 
+            /*
             super.onPreExecute();
             pDialog = new ProgressDialog(AllProductsActivity.this);
             pDialog.setMessage("Loading products. Please wait...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
             pDialog.show();
+            */
 
 
 
         }
+
+
 
         /**
          * getting All products from url
@@ -143,9 +160,16 @@ public class AllProductsActivity extends ListActivity {
 
 
 
+
+
             // getting JSON string from URL
+            //StringRequest strReq = jParser.volleyStringRequest(url_all_products);
+            // Adding String request to request queue
+            //String  REQUEST_TAG = "net.hebergratuit.1pour1.volleyJsonObjectRequest";
+
 
             JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
+
 
             // Check your log cat for JSON reponse
             Log.d("All Products: ", json.toString());
@@ -190,6 +214,7 @@ public class AllProductsActivity extends ListActivity {
                 e.printStackTrace();
             }
 
+
             return null;
         }
 
@@ -197,8 +222,9 @@ public class AllProductsActivity extends ListActivity {
          * After completing background task Dismiss the progress dialog
          * **/
         protected void onPostExecute(String file_url) {
+
             // dismiss the dialog after getting all products
-            pDialog.dismiss();
+            //pDialog.dismiss();
 
             // updating UI from Background Thread
             runOnUiThread(new Runnable() {
@@ -214,6 +240,7 @@ public class AllProductsActivity extends ListActivity {
                             new int[] { R.id.pid, R.id.name });
                     // updating listview
                     setListAdapter(adapter);
+
                 }
             });
 
