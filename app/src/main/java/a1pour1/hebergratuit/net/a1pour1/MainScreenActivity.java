@@ -27,6 +27,8 @@ public class MainScreenActivity extends AppCompatActivity {
     Button btnViewProducts;
     Button btnNewProduct;
     private WebView myWebView;
+    // to check wifi state after
+    private WifiState wifiState = new WifiState(MainScreenActivity.this);
 
     public static boolean isConnectingToInternet(Context mContext) {
         ConnectivityManager connectivity = (ConnectivityManager) mContext
@@ -48,6 +50,9 @@ public class MainScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
+
+
+
         // Buttons
         btnViewProducts = findViewById(R.id.btnViewProducts);
         btnNewProduct = findViewById(R.id.btnCreateProduct);
@@ -57,9 +62,15 @@ public class MainScreenActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                // Launching All products Activity
-                Intent i = new Intent(getApplicationContext(), AllProductsActivity.class);
-                startActivity(i);
+
+                if (wifiState.haveNetworkConnection()) {
+                    // Launching All products Activity
+                    Intent i = new Intent(getApplicationContext(), AllProductsActivity.class);
+                    startActivity(i);
+                }
+                else{
+                    alertDialogInternet.showAlertConnection(MainScreenActivity.this);
+                }
 
             }
         });
@@ -69,9 +80,16 @@ public class MainScreenActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                // Launching create new product activity
-                Intent i = new Intent(getApplicationContext(), NewProductActivity.class);
-                startActivity(i);
+
+                if (wifiState.haveNetworkConnection()) {
+                    // Launching create new product activity
+                    Intent i = new Intent(getApplicationContext(), NewProductActivity.class);
+                    startActivity(i);
+                }
+                else{
+                    alertDialogInternet.showAlertConnection(MainScreenActivity.this);
+                }
+
 
             }
         });
@@ -79,7 +97,7 @@ public class MainScreenActivity extends AppCompatActivity {
 
 
 
-        WifiState wifiState = new WifiState(MainScreenActivity.this);
+
 
         if (wifiState.haveNetworkConnection()) {
                 myWebView = findViewById(R.id.CookieLoader);
@@ -103,7 +121,7 @@ public class MainScreenActivity extends AppCompatActivity {
 
             myWebView.loadUrl(url_all_products);
 
-            //myWebView.setVisibility(View.GONE);
+            myWebView.setVisibility(View.GONE);
             //myWebView.destroy();
 
         } else {
@@ -112,5 +130,32 @@ public class MainScreenActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onNavigateUp() {
 
+        if (wifiState.haveNetworkConnection()) {
+            myWebView = findViewById(R.id.CookieLoader);
+            myWebView.getSettings().setJavaScriptEnabled(true);
+            myWebView.setWebViewClient(new WebViewClient() {
+                @Override
+                public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                    String errorMsg = "errorCode: " + String.valueOf(errorCode) + " description: " + description + " failingUrl: " + failingUrl;
+                    Log.e("MainScreenActivity", errorMsg);
+                    // Handle the error
+                }
+
+                // we should get the cookies when the page finished loading
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                    super.onPageFinished(view, url);
+                    COOKIES = CookieManager.getInstance().getCookie(url_all_products);
+                    Log.d("MainScreenActivity", "In Mobile: Cookies: " + COOKIES);
+                }
+            });
+
+            myWebView.loadUrl(url_all_products);
+
+        }
+        return super.onNavigateUp();
+    }
 }
