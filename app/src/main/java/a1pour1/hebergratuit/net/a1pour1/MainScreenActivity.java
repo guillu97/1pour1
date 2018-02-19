@@ -115,6 +115,7 @@ public class MainScreenActivity extends AppCompatActivity {
     public boolean onNavigateUp() {
 
         if (wifiState.haveNetworkConnection()) {
+            
             myWebView = findViewById(R.id.CookieLoader);
             myWebView.getSettings().setJavaScriptEnabled(true);
             myWebView.setWebViewClient(new WebViewClient() {
