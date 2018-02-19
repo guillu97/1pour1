@@ -4,11 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.webkit.CookieManager;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 
 public class MainScreenActivity extends AppCompatActivity {
@@ -73,26 +77,38 @@ public class MainScreenActivity extends AppCompatActivity {
         });
 
 
-        myWebView = findViewById(R.id.CookieLoader);
-        myWebView.setVisibility(View.GONE);
-        myWebView.getSettings().setJavaScriptEnabled(true);
-
-        String cookies = null;
 
 
-        if (isConnectingToInternet(getApplicationContext())) {
+        WifiState wifiState = new WifiState(MainScreenActivity.this);
+
+        if (wifiState.haveNetworkConnection()) {
+                myWebView = findViewById(R.id.CookieLoader);
+                myWebView.getSettings().setJavaScriptEnabled(true);
+                myWebView.setWebViewClient(new WebViewClient() {
+                    @Override
+                    public void onReceivedError(WebView view, int errorCode, String description, String failingUrl)
+                    {
+                        String errorMsg = "errorCode: " +  String.valueOf(errorCode) + " description: " + description + " failingUrl: " + failingUrl;
+                        Log.e("MainScreenActivity", errorMsg);
+                        // Handle the error
+                    }
+                    // we should get the cookies when the page finished loading
+                    @Override
+                    public void onPageFinished(WebView view, String url) {
+                        super.onPageFinished(view, url);
+                        COOKIES = CookieManager.getInstance().getCookie(url_all_products);
+                        Log.d("MainScreenActivity", "In Mobile: Cookies: " + COOKIES);
+                    }
+                });
+
             myWebView.loadUrl(url_all_products);
-            cookies = CookieManager.getInstance().getCookie(url_all_products);
-        } else {
 
+            //myWebView.setVisibility(View.GONE);
+            //myWebView.destroy();
+
+        } else {
             alertDialogInternet.showAlertConnection(MainScreenActivity.this);
         }
-
-        System.out.println(cookies);
-
-        COOKIES = cookies;
-        myWebView.destroy();
-
 
     }
 

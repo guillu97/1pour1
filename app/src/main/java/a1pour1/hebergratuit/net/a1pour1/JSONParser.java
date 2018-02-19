@@ -60,12 +60,15 @@ public class JSONParser  {
                 HttpPost httpPost = new HttpPost(url);
                 httpPost.setEntity(new UrlEncodedFormEntity(params));
 
-                //if(MainScreenActivity.COOKIES != null) {
-                    // needed to bypass the testcookie-nginx-module see here : https://stackoverflow.com/questions/31912000/byethost-server-passing-html-values-checking-your-browser-with-json-string
-                    httpPost.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240 ");
-                    //httpPost.addHeader("Cookie", "__test=" + getCookieContent(url) +"; expires=Fri, 01-Jan-38 00:55:55 GMT; path=/");
-                    httpPost.addHeader("Cookie", MainScreenActivity.COOKIES + "; expires=Fri, 01-Jan-38 00:55:55 GMT; path=/");
-                //}
+                // needed to bypass the testcookie-nginx-module see here : https://stackoverflow.com/questions/31912000/byethost-server-passing-html-values-checking-your-browser-with-json-string
+
+
+                Log.d("JSOnParser", "In Post : Cookies: " + MainScreenActivity.COOKIES);
+                httpPost.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240 ");
+                //httpPost.addHeader("Cookie", "__test=" + getCookieContent(url) +"; expires=Fri, 01-Jan-38 00:55:55 GMT; path=/");
+                if(MainScreenActivity.COOKIES != null) {
+                    httpPost.addHeader("Cookie", MainScreenActivity.COOKIES + "; expires=Fri, 31-Dec-37 23:55:55 GMT; path=/");
+                }
 
 
                 HttpResponse httpResponse = httpClient.execute(httpPost);
@@ -82,11 +85,13 @@ public class JSONParser  {
 
                 HttpGet httpGet = new HttpGet(url);
 
-                //if(MainScreenActivity.COOKIES != null) {
-                    // needed to bypass the testcookie-nginx-module see here : https://stackoverflow.com/questions/31912000/byethost-server-passing-html-values-checking-your-browser-with-json-string
-                    httpGet.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240 ");
-                    httpGet.addHeader("Cookie", MainScreenActivity.COOKIES + "; expires=Fri, 01-Jan-38 00:55:55 GMT; path=/");
-                //}
+                // needed to bypass the testcookie-nginx-module see here : https://stackoverflow.com/questions/31912000/byethost-server-passing-html-values-checking-your-browser-with-json-string
+
+                Log.d("JSOnParser", "In Get : Cookies: " + MainScreenActivity.COOKIES);
+                httpGet.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240 ");
+                if(MainScreenActivity.COOKIES != null) {
+                    httpGet.addHeader("Cookie", MainScreenActivity.COOKIES + "; expires=Fri, 31-Dec-37 23:55:55 GMT; path=/");
+                }
 
 
                 HttpResponse httpResponse = httpClient.execute(httpGet);
