@@ -19,6 +19,7 @@ public class MainScreenActivity extends AppCompatActivity {
     //Guillu TEST
     //MACANTOINE
     //Change
+    //
     Button btnViewProducts;
     Button btnNewProduct;
     private WebView myWebView = findViewById(R.id.CookieLoader);
