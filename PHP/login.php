@@ -2,8 +2,7 @@
 <?php
  
 /*
- * Following code will update a product information
- * A product is identified by product id (pid)
+ * Following code will log in
  */
  
 // array for JSON response
