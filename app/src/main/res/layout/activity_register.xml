@@ -8,7 +8,7 @@
     tools:context="a1pour1.hebergratuit.net.a1pour1.activity_register">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/firstNameTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -20,14 +20,14 @@
         android:hint="@string/text_firstname"
         android:inputType="textPersonName"
         android:text="@string/text_firstname"
-        app:layout_constraintBottom_toTopOf="@+id/editText3"
+        app:layout_constraintBottom_toTopOf="@+id/surnameTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/surnameTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -38,13 +38,13 @@
         android:hint="@string/text_surname"
         android:inputType="textPersonName"
         android:text="Surname"
-        app:layout_constraintBottom_toTopOf="@+id/editText4"
+        app:layout_constraintBottom_toTopOf="@+id/emailTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/firstNameTxt" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/emailTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
@@ -55,13 +55,13 @@
         android:hint="@string/text_email"
         android:inputType="textEmailAddress"
         android:text="Email"
-        app:layout_constraintBottom_toTopOf="@+id/editText5"
+        app:layout_constraintBottom_toTopOf="@+id/surnameTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneTxt" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/phoneTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -72,13 +72,13 @@
         android:hint="@string/text_phone"
         android:inputType="phone"
         android:text="@string/text_phone"
-        app:layout_constraintBottom_toTopOf="@+id/editText7"
+        app:layout_constraintBottom_toTopOf="@+id/emailTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/cityTxt" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/cityTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -95,7 +95,7 @@
         tools:layout_editor_absoluteY="348dp" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/adresseTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -106,12 +106,14 @@
         android:hint="@string/text_adresse"
         android:inputType="textPersonName"
         android:text="@string/text_adresse"
-        app:layout_constraintBottom_toTopOf="@+id/editText6"
+        app:layout_constraintBottom_toTopOf="@+id/cityTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordTxt" />
 
     <EditText
+
+        android:id="@+id/passwordTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -131,6 +133,6 @@
         android:text="@string/action_register"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText6" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordTxt" />
 
 </LinearLayout>
