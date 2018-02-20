@@ -90,8 +90,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private static final String TAG_MDP = "Mdp";
 
     private WebView myWebView;
+    // to check wifi state after
+    private WifiState wifiState = new WifiState(LoginActivity.this);
 
-    private static String url_test = "http://1pour1.hebergratuit.net/";
+    boolean canClick = false;
+
+    private static String url_test = "http://1pour1.hebergratuit.net/login.php";
 
 
     @Override
@@ -125,31 +129,36 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
-        myWebView = findViewById(R.id.CookieLoader);
-        myWebView.getSettings().setJavaScriptEnabled(true);
-        myWebView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl)
-            {
-                String errorMsg = "errorCode: " +  String.valueOf(errorCode) + " description: " + description + " failingUrl: " + failingUrl;
-                Log.e("MainScreenActivity", errorMsg);
-                // Handle the error
-            }
-            // we should get the cookies when the page finished loading
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                MainScreenActivity.COOKIES = CookieManager.getInstance().getCookie(url_test);
-                Log.d("MainScreenActivity", "In Mobile: Cookies: " + MainScreenActivity.COOKIES);
-                //canClick = true;
+        if (wifiState.haveNetworkConnection()) {
+            myWebView = findViewById(R.id.CookieLoader);
+            myWebView.getSettings().setJavaScriptEnabled(true);
+            myWebView.setWebViewClient(new WebViewClient() {
+                @Override
+                public void onReceivedError(WebView view, int errorCode, String description, String failingUrl)
+                {
+                    String errorMsg = "errorCode: " +  String.valueOf(errorCode) + " description: " + description + " failingUrl: " + failingUrl;
+                    Log.e("LoginActivity", errorMsg);
+                    // Handle the error
+                }
+                // we should get the cookies when the page finished loading
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                    super.onPageFinished(view, url);
+                    MainScreenActivity.COOKIES = CookieManager.getInstance().getCookie(url_login);
+                    Log.d("LoginActivity", "In Mobile: Cookies: " + MainScreenActivity.COOKIES);
+                    canClick = true;
 
-            }
-        });
+                }
+            });
 
-        myWebView.loadUrl(url_test);
+            myWebView.loadUrl(url_test);
 
-        myWebView.setVisibility(View.GONE);
-        //myWebView.destroy();
+            //myWebView.setVisibility(View.GONE);
+            //myWebView.destroy();
+
+        } else {
+            alertDialogInternet.showAlertConnection(LoginActivity.this);
+        }
 
 
     }
@@ -162,7 +171,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     //SIGN IN BUTTON BY ANTOINE
     //TODO: A enlever apres avoir securise la connexion
     public void signInButton(View view){
-        startActivity(new Intent(this,MainScreenActivity.class));
+        if(canClick)
+            startActivity(new Intent(this,MainScreenActivity.class));
     }
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {

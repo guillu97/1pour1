@@ -22,11 +22,12 @@ echo "JSON:";
 
 // check for post data
 
-if (isset($_GET["productID"])) {
-    $pid = $_GET['productID'];
+if (isset($_GET["ProduitId"])) {
+    
+    $pid = $_GET['ProduitId'];
  
     // get a product from products table
-    $sql = "SELECT *FROM products WHERE productID = $pid";
+    $sql = "SELECT *FROM products WHERE ProduitId = $pid";
     $result = $conn->query($sql);
 
     if ($result) {
@@ -35,12 +36,12 @@ if (isset($_GET["productID"])) {
 
             $result = mysqli_fetch_assoc($result);
             $product = array();
-            $product["productID"] = $result["productID"];
-            $product["name"] = $result["name"];
-            $product["price"] = $result["price"];
-            $product["description"] = $result["description"];
-            $product["created_at"] = $result["created_at"];
-            $product["updated_at"] = $result["updated_at"];
+            $product["ProduitId"] = $result["ProduitId"];
+            $product["Nom"] = $result["Nom"];
+            $product["Marque"] = $result["Marque"];
+            $product["Description"] = $result["Description"];
+            //$product["created_at"] = $result["created_at"];
+            //$product["updated_at"] = $result["updated_at"];
             // success
             $response["success"] = 1;
  
