@@ -100,6 +100,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         startActivity(new Intent(this, activity_register.class));
     }
 
+    //SIGN IN BUTTON BY ANTOINE
+    //TODO: A enlever apres avoir securise la connexion
+    public void signInButton(View view){
+        startActivity(new Intent(this,MainScreenActivity.class));
+    }
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
             return;
@@ -339,6 +344,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
+
+                startActivity(new Intent(LoginActivity.this,MainScreenActivity.class));
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
