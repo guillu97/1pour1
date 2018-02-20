@@ -5,6 +5,7 @@ package a1pour1.hebergratuit.net.a1pour1;
  */
 
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ import java.util.List;
 public class AllProductsActivity extends ListActivity {
 
     // Progress Dialog
-    //private ProgressDialog pDialog;
+    private ProgressDialog pDialog;
 
     // Creating JSON Parser object
     JSONParser jParser = new JSONParser();
@@ -42,9 +43,11 @@ public class AllProductsActivity extends ListActivity {
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
-    private static final String TAG_PRODUCTS = "products";
-    private static final String TAG_PID = "productID";
-    private static final String TAG_NAME = "name";
+    private static final String TAG_PRODUCTS = "Produits";
+    private static final String TAG_PID = "ProduitId";
+    private static final String TAG_NAME = "Nom";
+    //private static final String TAG_MARQUE = "Marque";
+    //private static final String TAG_DESCRIPTION = "Description";
 
 
     // products JSONArray
@@ -136,14 +139,14 @@ public class AllProductsActivity extends ListActivity {
         protected void onPreExecute() {
 
 
-            /*
+
             super.onPreExecute();
             pDialog = new ProgressDialog(AllProductsActivity.this);
             pDialog.setMessage("Loading products. Please wait...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
             pDialog.show();
-            */
+
 
 
 
@@ -224,7 +227,7 @@ public class AllProductsActivity extends ListActivity {
         protected void onPostExecute(String file_url) {
 
             // dismiss the dialog after getting all products
-            //pDialog.dismiss();
+            pDialog.dismiss();
 
             // updating UI from Background Thread
             runOnUiThread(new Runnable() {

@@ -19,7 +19,7 @@ $conn = $db->connect();
  
 // get all products from products table
 
-$sql = "SELECT * FROM products";
+$sql = "SELECT * FROM Produit";
 $result = $conn->query($sql);
 
 
@@ -30,20 +30,22 @@ echo "JSON:";
 if ($result) {
     // looping through all results
     // products node
-    $response["products"] = array();
+    $response["Produits"] = array();
  
     while ($row = mysqli_fetch_assoc($result)) {
 
         // temp user array
         $product = array();
-        $product["productID"] = $row["productID"];
-        $product["name"] = $row["name"];
-        $product["price"] = $row["price"];
-        $product["created_at"] = $row["created_at"];
-        $product["updated_at"] = $row["updated_at"];
+        $product["ProduitId"] = $row["ProduitId"];
+        $product["Nom"] = $row["Nom"];
+        $product["Marque"] = $row["Marque"];
+        $product["Description"] = $row["Description"];
+        $product["Age"] = $row["Age"];
+        $product["DateMisenL"] = $row["DateMisenL"];
+        $product["DateValidation"] = $row["DateValidation"];
  
         // push single product into final response array
-        array_push($response["products"], $product);
+        array_push($response["Produits"], $product);
     }
     // success
     $response["success"] = 1;
