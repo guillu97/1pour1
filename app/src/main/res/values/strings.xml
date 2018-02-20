@@ -29,4 +29,8 @@
     <string name="text_date">Date</string>
     <string name="text_age">Age</string>
     <string name="text_addProduct">AddProduct</string>
+    <string name="text_title">Title</string>
+    <string name="text_date_debut">Date Beginning</string>
+    <string name="text_date_fin">Date end</string>
+    <string name="text_add_service">Add Service</string>
 </resources>

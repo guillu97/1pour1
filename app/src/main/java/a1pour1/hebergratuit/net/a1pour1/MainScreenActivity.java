@@ -117,7 +117,10 @@ public class MainScreenActivity extends AppCompatActivity {
 
     }
 
-
+    //REGISTER BUTTON BY ANTOINE
+    public void addServiceButton(View view){
+        startActivity(new Intent(this, AddServiceActivity.class));
+    }
 
     @Override
     public boolean onNavigateUp() {
