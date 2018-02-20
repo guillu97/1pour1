@@ -54,6 +54,8 @@ if (isset($_POST['productID']) && isset($_POST['name']) && isset($_POST['price']
         // failed update
         $response["success"] = 0;
         $response["message"] = "Product failed update";
+        // echoing JSON response
+        echo json_encode($response);
     }
 
 } else {
@@ -66,6 +68,6 @@ if (isset($_POST['productID']) && isset($_POST['name']) && isset($_POST['price']
 }
 
 // to get back later the json object
-echo "JSON:";
+echo ":END";
 
 ?>
