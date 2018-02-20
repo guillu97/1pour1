@@ -23,4 +23,10 @@
     <string name="text_adresse">Adresse</string>
     <string name="text_city">city</string>
     <string name="text_password">Password</string>
+    <string name="text_productname">ProductName</string>
+    <string name="text_brand">Brand</string>
+    <string name="text_description">Description</string>
+    <string name="text_date">Date</string>
+    <string name="text_age">Age</string>
+    <string name="text_addProduct">AddProduct</string>
 </resources>

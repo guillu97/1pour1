@@ -15,9 +15,7 @@ public class MainScreenActivity extends AppCompatActivity {
 
     static String COOKIES;
     private static String url_test = "http://1pour1.hebergratuit.net/";
-    // test 2
-    //Guillu TEST
-    //MACANTOINE
+
     //Change
     Button btnViewProducts;
     Button btnNewProduct;
@@ -69,7 +67,8 @@ public class MainScreenActivity extends AppCompatActivity {
 
                 if (wifiState.haveNetworkConnection() == true /*&& canClick == true*/) {
                     // Launching create new product activity
-                    Intent i = new Intent(getApplicationContext(), NewProductActivity.class);
+                    //BUTTON ADD PRODUCT ANTOINE
+                    Intent i = new Intent(getApplicationContext(), AddProductActivity.class);
                     startActivity(i);
                 }
                 else{
@@ -117,6 +116,8 @@ public class MainScreenActivity extends AppCompatActivity {
         }
 
     }
+
+
 
     @Override
     public boolean onNavigateUp() {
