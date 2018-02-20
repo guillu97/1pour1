@@ -3,6 +3,7 @@ package a1pour1.hebergratuit.net.a1pour1;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -92,6 +93,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+    }
+
+    //REGISTER BUTTON BY ANTOINE
+    public void registerButton(View view){
+        startActivity(new Intent(this, activity_register.class));
     }
 
     private void populateAutoComplete() {

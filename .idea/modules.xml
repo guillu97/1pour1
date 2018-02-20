@@ -3,10 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/1pour1.iml" filepath="$PROJECT_DIR$/1pour1.iml" />
-      <module fileurl="file://C:\Users\SPORE\AndroidStudioProjects\1pour1\.idea\modules\1pour1.iml" filepath="C:\Users\SPORE\AndroidStudioProjects\1pour1\.idea\modules\1pour1.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/volley/volley.iml" filepath="$PROJECT_DIR$/volley/volley.iml" />
-      <module fileurl="file://C:\Users\SPORE\AndroidStudioProjects\1pour1\volley\volley.iml" filepath="C:\Users\SPORE\AndroidStudioProjects\1pour1\volley\volley.iml" />
     </modules>
   </component>
 </project>
