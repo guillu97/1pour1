@@ -142,7 +142,7 @@ public class JSONParser  {
             }
             else{
                 Log.w("SubString error", "the substring hasn't been created");
-                String error = "{\"products\":[{\"productID\":\"21\",\"name\":\"error\",\"price\":\"20\",\"created_at\":\"2018-02-06 19:26:23\",\"updated_at\":\"0000-00-00 00:00:00\"}],\"success\":1}";
+                String error = "{\"products\":[{\"productID\":\"21\",\"name\":\"error\",\"price\":\"20\",\"created_at\":\"2018-02-06 19:26:23\",\"updated_at\":\"0000-00-00 00:00:00\"}],\"success\":0}";
                 json = error;
             }
 

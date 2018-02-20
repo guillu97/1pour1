@@ -26,7 +26,7 @@
         <LinearLayout
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout
@@ -79,7 +79,21 @@
                 android:onClick="registerButton"
                 android:text="@string/action_register" />
 
+            <WebView
+                android:id="@+id/CookieLoader"
+                android:layout_width="221dp"
+                android:layout_height="194dp"
+
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp" />
+
+
+
         </LinearLayout>
+
+
 
     </ScrollView>
 </LinearLayout>

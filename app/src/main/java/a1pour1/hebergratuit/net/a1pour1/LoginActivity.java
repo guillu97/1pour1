@@ -20,15 +20,24 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
+import android.webkit.CookieManager;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +72,28 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
 
+
+
+
+    // JSON parser class
+    JSONParser jsonParser = new JSONParser();
+
+    // url for login
+    private static final String url_login = "http://1pour1.hebergratuit.net/login.php";
+
+
+
+
+    // JSON Node names
+    private static final String TAG_SUCCESS = "success";
+    private static final String TAG_ADRESSE_MAIL= "AdresseMail";
+    private static final String TAG_MDP = "Mdp";
+
+    private WebView myWebView;
+
+    private static String url_test = "http://1pour1.hebergratuit.net/";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +124,34 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        myWebView = findViewById(R.id.CookieLoader);
+        myWebView.getSettings().setJavaScriptEnabled(true);
+        myWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl)
+            {
+                String errorMsg = "errorCode: " +  String.valueOf(errorCode) + " description: " + description + " failingUrl: " + failingUrl;
+                Log.e("MainScreenActivity", errorMsg);
+                // Handle the error
+            }
+            // we should get the cookies when the page finished loading
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                MainScreenActivity.COOKIES = CookieManager.getInstance().getCookie(url_test);
+                Log.d("MainScreenActivity", "In Mobile: Cookies: " + MainScreenActivity.COOKIES);
+                //canClick = true;
+
+            }
+        });
+
+        myWebView.loadUrl(url_test);
+
+        myWebView.setVisibility(View.GONE);
+        //myWebView.destroy();
+
+
     }
 
     //REGISTER BUTTON BY ANTOINE
@@ -321,26 +380,48 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected Boolean doInBackground(Void... args) {
             // TODO: attempt authentication against a network service.
 
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+
+                // Building Parameters
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair(TAG_ADRESSE_MAIL, mEmail));
+                params.add(new BasicNameValuePair(TAG_MDP, mPassword));
+
+
+                // sending modified data through http request
+                // Notice that update product url accepts POST method
+                JSONObject json = jsonParser.makeHttpRequest(url_login,
+                        "POST", params);
+
+                // check json success tag
+                try {
+                    int success = json.getInt(TAG_SUCCESS);
+
+                    if (success == 1) {
+                        Log.d("SuccessLoggedIn", "successfully logged in");
+
+                        // successfully logged in
+                        return true;
+
+                    } else {
+                        Log.d("FailedLoggedIn", "Failed to logged int");
+                        return false;
+                        // failed to logged in
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
                 }
-            }
+
+                return false;
+
+
 
             // TODO: register the new account here.
-            return true;
+
         }
 
 

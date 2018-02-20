@@ -14,7 +14,7 @@ public class MainScreenActivity extends AppCompatActivity {
 
 
     static String COOKIES;
-    private static String url_all_products = "http://1pour1.hebergratuit.net/";
+    private static String url_test = "http://1pour1.hebergratuit.net/";
     // test 2
     //Guillu TEST
     //MACANTOINE
@@ -100,14 +100,14 @@ public class MainScreenActivity extends AppCompatActivity {
                     @Override
                     public void onPageFinished(WebView view, String url) {
                         super.onPageFinished(view, url);
-                        COOKIES = CookieManager.getInstance().getCookie(url_all_products);
+                        COOKIES = CookieManager.getInstance().getCookie(url_test);
                         Log.d("MainScreenActivity", "In Mobile: Cookies: " + COOKIES);
                         //canClick = true;
 
                     }
                 });
 
-            myWebView.loadUrl(url_all_products);
+            myWebView.loadUrl(url_test);
 
             myWebView.setVisibility(View.GONE);
             //myWebView.destroy();
@@ -138,13 +138,13 @@ public class MainScreenActivity extends AppCompatActivity {
                 @Override
                 public void onPageFinished(WebView view, String url) {
                     super.onPageFinished(view, url);
-                    COOKIES = CookieManager.getInstance().getCookie(url_all_products);
+                    COOKIES = CookieManager.getInstance().getCookie(url_test);
                     Log.d("MainScreenActivity", "In Mobile: Cookies: " + COOKIES);
 
                 }
             });
 
-            myWebView.loadUrl(url_all_products);
+            myWebView.loadUrl(url_test);
 
         }
         return super.onNavigateUp();
