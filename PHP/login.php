@@ -22,38 +22,46 @@ echo "JSON:";
 
 // check for required fields
 
-if (isset($_POST['productID']) && isset($_POST['name']) && isset($_POST['price']) && isset($_POST['description'])) {
+if (isset($_POST['AdresseMail']) && isset($_POST['Mdp'])) {
  
 
-    $pid = $_POST['productID'];
-    $name = $_POST['name'];
-    $price = $_POST['price'];
-    $description = $_POST['description'];
+    $adresseMail = $_POST['AdresseMail'];
+    $mdp = $_POST['Mdp'];
 
 
-    // get the date in year-month-day hour:min:second     i.e.  2018-02-06 12:52:46
-    date_default_timezone_set('Europe/Paris');
-    $date = date("Y-m-d H:i:s");
+
  
 
  
     // mysql update row with matched pid
-    $sql = "UPDATE products SET name = '$name', price = '$price', description = '$description', updated_at = '$date' WHERE productID = $pid";
+    $sql = "SELECT * FROM Usager WHERE AdresseMail = '$adresseMail' and Mdp = '$mdp'";
     $result = $conn->query($sql);
  
     // check if row inserted or not
     if ($result) {
-        // successfully updated
-        $response["success"] = 1;
-        $response["message"] = "Product successfully updated.";
+    	if ( mysqli_num_rows($result) > 0) {
+	        // successfully updated
+	        $response["success"] = 1;
+	        $response["message"] = "successfully loged in.";
  
-        // echoing JSON response
-        echo json_encode($response);
+		    // echoing JSON response
+		    echo json_encode($response);
+		}
+		else {
+ 
+	        // failed update
+	        $response["success"] = 0;
+	        $response["message"] = " 1 failed to login";
+
+	        // echoing JSON response
+        	echo json_encode($response);
+    	}
     } else {
  
         // failed update
         $response["success"] = 0;
-        $response["message"] = "Product failed update";
+        $response["message"] = " 2 failed to login";
+
         // echoing JSON response
         echo json_encode($response);
     }

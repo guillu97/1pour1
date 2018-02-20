@@ -314,6 +314,7 @@ public class EditProductActivity extends AppCompatActivity {
             return null;
         }
 
+
         /**
          * After completing background task Dismiss the progress dialog
          * **/
