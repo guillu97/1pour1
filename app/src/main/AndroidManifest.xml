@@ -41,7 +41,14 @@
         <!-- Add Product Activity -->
         <activity
             android:name=".NewProductActivity"
-            android:label="Add New Product" />
+            android:label="Add New Product"
+            android:parentActivityName=".MainScreenActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainScreenActivity" />
+
+        </activity>
+
 
         <!-- Edit Product Activity -->
         <activity
@@ -50,8 +57,23 @@
         <activity
             android:name=".MainScreenActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".activity_register" />
-        <activity android:name=".AddProductActivity"></activity>
+
+        <activity android:name=".activity_register"
+           android:parentActivityName=".LoginActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LoginActivity"
+                />
+        </activity>
+
+        <activity android:name=".AddProductActivity"
+            android:parentActivityName=".MainScreenActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainScreenActivity"
+                />
+
+        </activity>
     </application>
 
 </manifest>
