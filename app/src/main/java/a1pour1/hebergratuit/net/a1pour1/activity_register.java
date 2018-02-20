@@ -2,8 +2,11 @@ package a1pour1.hebergratuit.net.a1pour1;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,7 +40,8 @@ public class activity_register extends AppCompatActivity {
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
 
-    //Dialog dialogAlreadyReg;
+    Dialog dialogAlreadyReg;
+    boolean displayDialog = false;
 
 
     @Override
@@ -95,6 +99,8 @@ public class activity_register extends AppCompatActivity {
          * Creating product
          */
         protected String doInBackground(String... args) {
+            displayDialog = false;
+
             String firstName = inputFirstName.getText().toString();
             String surname = inputSurname.getText().toString();
             String email = inputEmail.getText().toString();
@@ -122,7 +128,7 @@ public class activity_register extends AppCompatActivity {
             // getting JSON Object
             // Note that create product url accepts POST method
             JSONObject json = jsonParser.makeHttpRequest(url_register,
-                    "GET", params);
+                    "POST", params);
 
             // check log cat for response
             Log.d("Create Response", json.toString());
@@ -132,10 +138,9 @@ public class activity_register extends AppCompatActivity {
                 int success = json.getInt(TAG_SUCCESS);
 
                 if(success == 2){
-                    Log.d("activity_register", "The user is already in the database");
-                    //Dialog dialogAlreadyReg = new Dialog(activity_register.this);
-                    //dialogAlreadyReg.setTitle("Already registered");
-                    //dialogAlreadyReg.show();
+                    Log.d("activity_register", "the user is already in the database");
+                    displayDialog = true;
+
                 }
 
                 else if (success == 1) {
@@ -159,6 +164,18 @@ public class activity_register extends AppCompatActivity {
          * After completing background task Dismiss the progress dialog
          **/
         protected void onPostExecute(String file_url) {
+            if(displayDialog) {
+                AlertDialog alertDialog = new AlertDialog.Builder(activity_register.this).create();
+                alertDialog.setTitle("Already registered");
+                alertDialog.setMessage("You are already registered!");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
             // dismiss the dialog once done
             //pDialog.dismiss();
         }
