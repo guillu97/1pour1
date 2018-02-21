@@ -1,6 +1,5 @@
 package a1pour1.hebergratuit.net.a1pour1;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -37,7 +36,7 @@ public class activity_register extends AppCompatActivity {
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
 
-    Dialog dialogAlreadyReg;
+
     boolean displayDialog = false;
 
 
