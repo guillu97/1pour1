@@ -2,8 +2,8 @@
 <?php
  
 /*
- * Following code will update a product information
- * A product is identified by product id (pid)
+ * Following code will update a service information
+ * A service is identified by service id 
  */
  
 // array for JSON response
@@ -21,11 +21,11 @@ echo "JSON:";
 
 /*
 
-ProduitId
-Nom
-Marque
+ServiceId
+Titre
+DateExecution
 Description
-Age
+Lieu
 DateMisenL
 UsagerId
 DateValidation
@@ -38,30 +38,30 @@ ModId
 
 // TODO : à remettre lorsque GET -> POST
 
-//if ( isset($_POST['ProduitId']) && isset($_POST['Nom']) && isset($_POST['Marque']) && isset($_POST['Description']) && isset($_POST['Age']) && isset($_POST['DateMisenL']) && isset($_POST['UsagerId']) && isset($_POST['DateValidation']) && isset($_POST['ModId']) ) {
+//if ( isset($_POST['ServiceId']) && isset($_POST['Titre']) && isset($_POST['DateExecution']) && isset($_POST['Description']) && isset($_POST['Lieu']) && isset($_POST['DateMisenL']) && isset($_POST['UsagerId']) && isset($_POST['DateValidation']) && isset($_POST['ModId']) ) {
  
  /*
 
-    $produitId = $_POST['ProduitId'];
-    $nom = $_POST['Nom'];
-    $marque = $_POST['Marque'];
+    $serviceId = $_POST['ServiceId'];
+    $titre = $_POST['Titre'];
+    $dateExecution = $_POST['DateExecution'];
     $description = $_POST['Description'];
-    $age = $_POST['Age'];
+    $lieu = $_POST['Lieu'];
     $dateMisenL = $_POST['DateMisenL'];
     $UsagerId = $_POST['UsagerId'];
     $dateValidation = $_POST['DateValidation'];
     $modId = $_POST['ModId'];
     */
 
-if ( isset($_GET['ProduitId']) && isset($_GET['Nom']) && isset($_GET['Marque']) && isset($_GET['Description']) && isset($_GET['Age']) && isset($_GET['DateMisenL']) && isset($_GET['UsagerId']) && isset($_GET['DateValidation']) && isset($_GET['ModId']) ) {
+if ( isset($_GET['ServiceId']) && isset($_GET['Titre']) && isset($_GET['DateExecution']) && isset($_GET['Description']) && isset($_GET['Lieu']) && isset($_GET['DateMisenL']) && isset($_GET['UsagerId']) && isset($_GET['DateValidation']) && isset($_GET['ModId']) ) {
 
-    $produitId = $_GET['ProduitId'];
-    $nom = $_GET['Nom'];
-    $marque = $_GET['Marque'];
+    $serviceId = $_GET['ServiceId'];
+    $titre = $_GET['Titre'];
+    $dateExecution = $_GET['DateExecution'];
     $description = $_GET['Description'];
-    $age = $_GET['Age'];
+    $lieu = $_GET['Lieu'];
     $dateMisenL = $_GET['DateMisenL'];
-    $usagerId = $_GET['UsagerId'];
+    $UsagerId = $_GET['UsagerId'];
     $dateValidation = $_GET['DateValidation'];
     $modId = $_GET['ModId'];
 
@@ -76,14 +76,15 @@ if ( isset($_GET['ProduitId']) && isset($_GET['Nom']) && isset($_GET['Marque']) 
 
  
     // mysql update row with matched pid
-    $sql = "UPDATE Produit SET ProduitId = $produitId, Nom = '$nom', Description = '$description', Age = $age, DateMisenL = '$dateMisenL', UsagerId = $usagerId, DateValidation = '$dateValidation', ModId = $modId WHERE ProduitId = $produitId";
+    $sql = "UPDATE Service SET ServiceId = $serviceId, Titre = '$titre', DateExecution ='$dateExecution', Description = '$description', Lieu = $lieu, DateMisenL = '$dateMisenL', UsagerId = $usagerId, DateValidation = '$dateValidation', ModId = $modId WHERE ServiceId = $serviceId";
+
     $result = $conn->query($sql);
  
     // check if row inserted or not
     if ($result) {
         // successfully updated
         $response["success"] = 1;
-        $response["message"] = "Product successfully updated.";
+        $response["message"] = "Service successfully updated.";
  
         // echoing JSON response
         echo json_encode($response);
@@ -91,7 +92,7 @@ if ( isset($_GET['ProduitId']) && isset($_GET['Nom']) && isset($_GET['Marque']) 
  
         // failed update
         $response["success"] = 0;
-        $response["message"] = "Product failed update";
+        $response["message"] = "Service failed update";
         // echoing JSON response
         echo json_encode($response);
     }
