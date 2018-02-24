@@ -414,6 +414,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         Log.d("SuccessLoggedIn", "successfully logged in");
 
                         // successfully logged in
+
+
                         return true;
 
                     } else {
