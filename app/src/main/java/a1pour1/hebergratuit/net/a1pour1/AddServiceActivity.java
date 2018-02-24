@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -44,10 +45,77 @@ public class AddServiceActivity extends AppCompatActivity {
 
 
 
+
+    /**
+     * Attempts to sign in or register the account specified by the login form.
+     * If there are form errors (invalid email, missing fields, etc.), the
+     * errors are presented and no actual login attempt is made.
+     */
+    /*
+    private void attemptCreateService() {
+
+
+        // Reset errors.
+        inputServiceTitle.setError(null);
+        inputServiceAdresse.setError(null);
+        inputServiceDescription.setError(null);
+
+        // Store values at the time of the attempt to create the service.
+        String title = inputServiceTitle.getText().toString();
+        String adress = inputServiceAdresse.getText().toString();
+        String description = inputServiceDescription.getText().toString();
+
+        boolean cancel = false;
+        View focusView = null;
+
+        // Check for a valid password, if the user entered one.
+        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+            mPasswordView.setError(getString(R.string.error_invalid_password));
+            focusView = mPasswordView;
+            cancel = true;
+        }
+
+        // Check for a valid email address.
+        if (TextUtils.isEmpty(email)) {
+            mEmailView.setError(getString(R.string.error_field_required));
+            focusView = mEmailView;
+            cancel = true;
+        } else if (!isEmailValid(email)) {
+            mEmailView.setError(getString(R.string.error_invalid_email));
+            focusView = mEmailView;
+            cancel = true;
+        }
+
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
+            // Show a progress spinner, and kick off a background task to
+            // perform the user login attempt.
+            showProgress(true);
+            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask.execute((Void) null);
+        }
+    }
+
+    private boolean isEmailValid(String email) {
+        //TODO: Replace this with your own logic
+        return email.contains("@");
+    }
+
+    private boolean isPasswordValid(String password) {
+        //TODO: Replace this with your own logic
+        return password.length() > 4;
+    }
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_service);
+
 
         // Edit Text
         inputServiceTitle = findViewById(R.id.inputServiceTitle);
@@ -56,21 +124,14 @@ public class AddServiceActivity extends AppCompatActivity {
 
 
         // Create button
-        Button btnCreateService = findViewById(R.id.buttonCreateService);
+
         Button btnChooseTime = findViewById(R.id.buttonChooseTime);
         Button btnChooseDate = findViewById(R.id.buttonChooseDate);
 
+        Button btnCreateService = findViewById(R.id.buttonCreateService);
+
+
         // button click event
-        btnCreateService.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                // creating new product in background thread
-                new CreateNewService().execute();
-            }
-        });
-
-
         btnChooseTime.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -89,7 +150,22 @@ public class AddServiceActivity extends AppCompatActivity {
         });
 
 
+
+        btnCreateService.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+            // creating new product in background thread
+            new CreateNewService().execute();
+            }
+        });
+
+
+
+
+
     }
+    */
 
     /**
      * Background Async Task to Create new product
@@ -109,6 +185,7 @@ public class AddServiceActivity extends AppCompatActivity {
             pDialog.setCancelable(true);
             pDialog.show();
             */
+
         }
 
         /**
@@ -124,6 +201,7 @@ public class AddServiceActivity extends AppCompatActivity {
             String dateBegin = "" + dateFragment.getYearChosen() + "-" + dateFragment.getMonthChosen()
                     + "-" + dateFragment.getDayChosen() + " " + timeFragment.getHourOfDayChosen()
                     + "-" + timeFragment.getMinuteChosen() + "-00" ;
+
 
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
