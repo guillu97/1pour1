@@ -36,6 +36,7 @@ import android.widget.TextView;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -61,6 +62,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
+
+
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -81,6 +84,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     // url for login
     private static final String url_login = "http://1pour1.hebergratuit.net/login.php";
 
+    private static final String url_get_user = "http://1pour1.hebergratuit.net/get_user.php";
+
 
 
 
@@ -89,6 +94,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private static final String TAG_ADRESSE_MAIL= "AdresseMail";
     private static final String TAG_MDP = "Mdp";
 
+    private static final String TAG_USER = "Utilisateur";
+    private static final String TAG_ID = "UsagerId";
+    private static final String TAG_NOM = "Nom";
+    private static final String TAG_PRENOM = "Prenom";
+    private static final String TAG_NUMTEL = "NumTel";
+    private static final String TAG_ADRESSE = "Adresse";
+    private static final String TAG_VILLE = "Ville";
+
     private WebView myWebView;
     // to check wifi state after
     private WifiState wifiState = new WifiState(LoginActivity.this);
@@ -96,6 +109,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     boolean canClick = false;
 
     private static String url_test = "http://1pour1.hebergratuit.net/login.php";
+
 
 
     @Override
@@ -415,6 +429,64 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                         // successfully logged in
 
+                        // now we try to get the informations of the user
+
+                        // Building Parameters
+                        List<NameValuePair> params2 = new ArrayList<NameValuePair>();
+                        params2.add(new BasicNameValuePair(TAG_ADRESSE_MAIL, mEmail));
+                        params2.add(new BasicNameValuePair(TAG_MDP, mPassword));
+
+
+                        // sending modified data through http request
+                        // Notice that update product url accepts POST method
+                        JSONObject json2 = jsonParser.makeHttpRequest(url_get_user,
+                                "POST", params2);
+
+
+                        try{
+                            int success2 = json2.getInt(TAG_SUCCESS);
+
+                            if (success2 == 1) {
+
+                                // user's infos found
+                                // Getting the infos
+
+                                // successfully received user's details
+                                JSONArray usersInfosArray = json2.getJSONArray(TAG_USER); // JSON Array
+
+                                // get first product object from JSON Array
+                                JSONObject usersInfo = usersInfosArray.getJSONObject(0);
+
+
+
+                                // create the user
+                                Utilisateur user = new Utilisateur(usersInfo.getInt(TAG_ID), usersInfo.getString(TAG_NOM), usersInfo.getString(TAG_PRENOM),
+                                        usersInfo.getString(TAG_ADRESSE_MAIL), usersInfo.getString(TAG_MDP), usersInfo.getInt(TAG_NUMTEL), usersInfo.getString(TAG_ADRESSE) ,
+                                        usersInfo.getString(TAG_VILLE) );
+
+                                Log.d("Utilisateur: Id", "" + Utilisateur.getId());
+                                Log.d("Utilisateur: Nom", "" + Utilisateur.getNom());
+                                Log.d("Utilisateur: Prenom", "" + Utilisateur.getPrenom());
+                                Log.d("Utilisateur: Adrs Mail" , "" + Utilisateur.getAdresseMail());
+                                Log.d("Utilisateur: Mdp", "" + Utilisateur.getMdp());
+                                Log.d("Utilisateur: NumTel", "" + Utilisateur.getNumTel());
+                                Log.d("Utilisateur: Adresse", "" + Utilisateur.getAdresse());
+                                Log.d("Utilisateur: Ville", "" + Utilisateur.getVille());
+
+
+                                Log.d("SuccessGetUserInfos", "successfully get the user infos");
+
+
+                            }else {
+                                Log.d("FailedGetUserInfo", "Failed to get the user infos");
+                                return false;
+                                // failed to get the infos
+                            }
+
+                        }catch (JSONException e) {
+                            e.printStackTrace();
+
+                        }
 
                         return true;
 

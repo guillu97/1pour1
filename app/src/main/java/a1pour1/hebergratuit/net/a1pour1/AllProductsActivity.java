@@ -175,7 +175,7 @@ public class AllProductsActivity extends ListActivity {
 
 
             // Check your log cat for JSON reponse
-            Log.d("All Products: ", json.toString());
+            //Log.d("All Products: ", json.toString());
 
             try {
                 // Checking for SUCCESS TAG
