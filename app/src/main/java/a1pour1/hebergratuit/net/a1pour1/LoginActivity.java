@@ -464,7 +464,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                         usersInfo.getString(TAG_ADRESSE_MAIL), usersInfo.getString(TAG_MDP), usersInfo.getInt(TAG_NUMTEL), usersInfo.getString(TAG_ADRESSE) ,
                                         usersInfo.getString(TAG_VILLE) );
 
-                                
+
                                 Log.d("Utilisateur: Id", "" + Utilisateur.getId());
                                 Log.d("Utilisateur: Nom", "" + Utilisateur.getNom());
                                 Log.d("Utilisateur: Prenom", "" + Utilisateur.getPrenom());

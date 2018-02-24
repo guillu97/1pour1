@@ -9,8 +9,12 @@ import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
 
 public class MainScreenActivity extends AppCompatActivity {
+
 
 
     static String COOKIES;
@@ -24,6 +28,9 @@ public class MainScreenActivity extends AppCompatActivity {
     private WifiState wifiState = new WifiState(MainScreenActivity.this);
 
 
+    TextView hello;
+
+
 
 
 
@@ -34,6 +41,12 @@ public class MainScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
+
+        // hello textview
+        hello = findViewById(R.id.textView);
+
+        // display user name in EditText
+        hello.setText("Hello " + Utilisateur.getPrenom() + " " + Utilisateur.getNom() + "!");
 
 
 
@@ -153,4 +166,6 @@ public class MainScreenActivity extends AppCompatActivity {
         }
         return super.onNavigateUp();
     }
+
+
 }
