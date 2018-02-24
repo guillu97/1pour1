@@ -28,9 +28,12 @@
     <string name="text_description">Description</string>
     <string name="text_date">Date</string>
     <string name="text_age">Age</string>
-    <string name="text_addProduct">AddProduct</string>
+    <string name="text_addProduct">Add Product</string>
     <string name="text_title">Title</string>
     <string name="text_date_debut">Date Beginning</string>
     <string name="text_date_fin">Date end</string>
     <string name="text_add_service">Add Service</string>
+
+    <string name="pick_time">Choose Time</string>
+    <string name="pick_date">Choose Date</string>
 </resources>

@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/inputProductName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -30,6 +30,7 @@
             android:text="@string/text_productname" />
 
         <EditText
+            android:id="@+id/inputProductBrand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -38,7 +39,7 @@
             android:text="@string/text_brand" />
 
         <EditText
-            android:id="@+id/editText8"
+            android:id="@+id/inputProductDescription"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:ems="10"
@@ -46,35 +47,21 @@
             android:inputType="textMultiLine"
             android:text="@string/text_description" />
 
-        <LinearLayout
+
+        <EditText
+            android:id="@+id/inputProductAge"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/text_age"
+            android:inputType="number" />
 
-            <EditText
-                android:id="@+id/editText10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="@string/text_date"
-                android:inputType="date" />
 
-            <EditText
-                android:id="@+id/editText9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="@string/text_age"
-                android:inputType="number" />
-
-        </LinearLayout>
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonCreateProduct"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginBottom="32dp"

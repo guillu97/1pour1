@@ -23,18 +23,36 @@ $conn = $db->connect();
 // to get back later the json object
 echo "JSON:";
  
+
+/*
+ProduitId
+Nom
+Marque
+Description
+Age
+DateMisenL
+UsagerId
+DateValidation
+ModId
+
+*/
+
+
 // check for required fields
 
-if (isset($_POST['name']) && isset($_POST['price']) && isset($_POST['description'])) {
 
-    $name = $_POST['name'];
-    $price = $_POST['price'];
-    $description = $_POST['description'];
+if (isset($_POST['Nom']) && isset($_POST['Marque']) && isset($_POST['Description']) && isset($_POST['Age']) && isset($_POST['UsagerId'])) {
+
+    $nom = $_POST['Nom'];
+    $marque = $_POST['Marque'];
+    $description = $_POST['Description'];
+    $age = $_POST['Age'];
+    $usagerId = $_POST['UsagerId'];
 
 
     // get the date in year-month-day hour:min:second     i.e.  2018-02-06 12:52:46
     date_default_timezone_set('Europe/Paris');
-    $date = date("Y-m-d H:i:s");
+    $dateMisenL = date("Y-m-d H:i:s");
  
    
  
@@ -42,7 +60,7 @@ if (isset($_POST['name']) && isset($_POST['price']) && isset($_POST['description
 
     // mysqli inserting a new row
 
-    $sql = "INSERT INTO products(name, price, description, created_at) VALUES('$name', '$price', '$description', '$date')";
+    $sql = "INSERT INTO Produit(Nom, Marque, Description, Age, DateMisenL, UsagerId ) VALUES('$nom', '$marque', '$description', '$age', '$dateMisenL' ,'$usagerId')";
     $result = $conn->query($sql);
 
  

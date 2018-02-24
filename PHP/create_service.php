@@ -39,13 +39,13 @@ echo "JSON:";
 // check for required fields
 
 //TODO: à remettre lorsque GET -> POST
-//if (isset($_POST['Titre']) && isset($_POST['DateExecution']) && isset($_POST['Description']) && isset($_POST['Lieu']) && isset($_POST['DateMisenL']) && isset($_POST['UsagerId']) && isset($_POST['DateValidation']) && isset($_POST['ModId'])){
+if (isset($_POST['Titre']) && isset($_POST['DateExecution']) && isset($_POST['Description']) && isset($_POST['Lieu']) && isset($_POST['UsagerId']) ){
 
-if (isset($_GET['Titre']) && isset($_GET['Description']) && isset($_GET['Lieu']) && isset($_GET['UsagerId']) && isset($_GET['ModId'])){
+//if (isset($_GET['Titre']) && isset($_GET['DateExecution']) && isset($_GET['Description']) && isset($_GET['Lieu']) && isset($_GET['UsagerId'])){
 
 
 //TODO: à remettre lorsque GET -> POST
-/*
+
     $titre = $_POST['Titre'];
     $dateExecution = $_POST['DateExecution'];
     $description = $_POST['Description'];
@@ -56,15 +56,15 @@ if (isset($_GET['Titre']) && isset($_GET['Description']) && isset($_GET['Lieu'])
     $dateMisenL = date("Y-m-d H:i:s");
 
     $usagerId = $_POST['UsagerId'];
-    $dateValidation = $_POST['DateValidation'];
-    $modId = $_POST['ModId'];
-    */
+    //$dateValidation = $_POST['DateValidation'];
+    //$modId = $_POST['ModId'];
+    
 
-
+/*
     $titre = $_GET['Titre'];
 
 	/*date_default_timezone_set('Europe/Paris');
-    $dateExecution = date("Y-m-d H:i:s");*/
+    $dateExecution = date("Y-m-d H:i:s");
 
     $dateExecution = $_GET['DateExecution'];
 
@@ -78,11 +78,12 @@ if (isset($_GET['Titre']) && isset($_GET['Description']) && isset($_GET['Lieu'])
     $usagerId = $_GET['UsagerId'];
 
     /*date_default_timezone_set('Europe/Paris');
-    $dateValidation = date("Y-m-d H:i:s");*/
+    $dateValidation = date("Y-m-d H:i:s");
 
     $dateValidation = $_GET['DateValidation'];
 
     $modId = $_GET['ModId'];
+    */
 
 
 
@@ -96,7 +97,7 @@ if (isset($_GET['Titre']) && isset($_GET['Description']) && isset($_GET['Lieu'])
 
     //INSERT INTO Service(Titre, DateExecution, Description, Lieu, DateMisenL, UsagerId, DateValidation, ModId ) VALUES('test', '2018-02-22 00-00-00', 'test', 'test' , '2018-02-22 00-00-00', 1 , '2018-02-22 00-00-00', 1)
 
-    $sql = "INSERT INTO Service(Titre, DateExecution, Description, Lieu, DateMisenL, UsagerId, DateValidation, ModId ) VALUES('$titre', '$dateExecution', '$description', '$lieu', '$dateMisenL', $usagerId , '$dateValidation', $modId)";
+    $sql = "INSERT INTO Service(Titre, DateExecution, Description, Lieu, DateMisenL, UsagerId ) VALUES('$titre', '$dateExecution', '$description', '$lieu', '$dateMisenL', '$usagerId')";
     $result = $conn->query($sql);
 
  
