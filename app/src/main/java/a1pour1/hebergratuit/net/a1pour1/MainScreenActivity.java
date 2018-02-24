@@ -134,6 +134,12 @@ public class MainScreenActivity extends AppCompatActivity {
         startActivity(new Intent(this, AddServiceActivity.class));
     }
 
+
+    //guillu
+    public void viewAllServicesButton(View view){
+        startActivity(new Intent(this, AllServicesActivity.class));
+    }
+
     @Override
     public boolean onNavigateUp() {
         //canClick = false;

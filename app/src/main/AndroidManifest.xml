@@ -38,6 +38,11 @@
             android:name=".AllProductsActivity"
             android:label="All Products" />
 
+        <!-- All Service Activity -->
+        <activity
+            android:name=".AllServicesActivity"
+            android:label="All Services" />
+
         <!-- Add Product Activity -->
         <activity
             android:name=".NewProductActivity"
