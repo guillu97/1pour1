@@ -20,28 +20,49 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/inputServiceTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/text_title"
-            android:inputType="textPersonName" />
 
-        <EditText
-            android:id="@+id/inputServiceAdresse"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/text_adresse" />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/inputServiceDescription"
+            <AutoCompleteTextView
+                android:id="@+id/inputServiceTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_service_title"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:inputType="textPersonName" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:ems="10"
-            android:hint="@string/text_description"
-            android:inputType="textMultiLine" />
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:id="@+id/inputServiceAdresse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/text_adresse" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <AutoCompleteTextView
+                android:id="@+id/inputServiceDescription"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:ems="10"
+                android:hint="@string/text_description"
+                android:inputType="textMultiLine" />
+        </android.support.design.widget.TextInputLayout>
 
         <TableRow
             android:layout_width="match_parent"

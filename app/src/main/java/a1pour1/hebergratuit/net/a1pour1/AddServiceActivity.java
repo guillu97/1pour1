@@ -1,13 +1,17 @@
 package a1pour1.hebergratuit.net.a1pour1;
 
+import android.app.LoaderManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.Loader;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -19,17 +23,19 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddServiceActivity extends AppCompatActivity {
+public class AddServiceActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
 
     // Progress Dialog
     private ProgressDialog pDialog;
 
     JSONParser jsonParser = new JSONParser();
-    EditText inputServiceTitle;
-    EditText inputServiceAdresse;
-    EditText inputServiceDescription;
-    EditText inputServiceDateBegin;
+
+
+    AutoCompleteTextView inputServiceTitle;
+    AutoCompleteTextView inputServiceAdresse;
+    AutoCompleteTextView inputServiceDescription;
+    //AutoCompleteTextView inputServiceDateBegin;
 
 
 
@@ -40,74 +46,16 @@ public class AddServiceActivity extends AppCompatActivity {
     private static final String TAG_SUCCESS = "success";
 
 
-    TimePickerFragment timeFragment;
-    DatePickerFragment dateFragment;
+    TimePickerFragment timeFragment = new TimePickerFragment();
+    DatePickerFragment dateFragment = new DatePickerFragment();
 
 
 
 
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
-    /*
-    private void attemptCreateService() {
 
 
-        // Reset errors.
-        inputServiceTitle.setError(null);
-        inputServiceAdresse.setError(null);
-        inputServiceDescription.setError(null);
 
-        // Store values at the time of the attempt to create the service.
-        String title = inputServiceTitle.getText().toString();
-        String adress = inputServiceAdresse.getText().toString();
-        String description = inputServiceDescription.getText().toString();
 
-        boolean cancel = false;
-        View focusView = null;
-
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }
-
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-        }
-    }
-
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
-    }
 
 
 
@@ -117,10 +65,15 @@ public class AddServiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_service);
 
 
+
+
+
         // Edit Text
         inputServiceTitle = findViewById(R.id.inputServiceTitle);
         inputServiceAdresse = findViewById(R.id.inputServiceAdresse);
         inputServiceDescription = findViewById(R.id.inputServiceDescription);
+        populateAutoComplete();
+
 
 
         // Create button
@@ -135,7 +88,6 @@ public class AddServiceActivity extends AppCompatActivity {
         btnChooseTime.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                timeFragment = new TimePickerFragment();
                 timeFragment.show(getSupportFragmentManager(), "timePicker");
             }
         });
@@ -143,7 +95,6 @@ public class AddServiceActivity extends AppCompatActivity {
         btnChooseDate.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                dateFragment = new DatePickerFragment();
                 dateFragment.show(getSupportFragmentManager(), "datePicker");
 
             }
@@ -156,16 +107,89 @@ public class AddServiceActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
             // creating new product in background thread
-            new CreateNewService().execute();
+            attemptCreateService();
             }
         });
 
 
 
+    }
 
+    private void populateAutoComplete() {
+
+        getLoaderManager().initLoader(0, null, this);
+    }
+
+    /**
+     * Attempts to sign in or register the account specified by the login form.
+     * If there are form errors (invalid email, missing fields, etc.), the
+     * errors are presented and no actual login attempt is made.
+     */
+
+    private void attemptCreateService() {
+
+
+        // Reset errors.
+        inputServiceTitle.setError(null);
+        inputServiceAdresse.setError(null);
+        inputServiceDescription.setError(null);
+
+        // Store values at the time of the attempt to create the service.
+        String title = inputServiceTitle.getText().toString();
+        String adresse = inputServiceAdresse.getText().toString();
+        String description = inputServiceDescription.getText().toString();
+
+        boolean cancel = false;
+        View focusView = null;
+
+
+
+        // Check for a non empty title.
+        if (TextUtils.isEmpty(title)) {
+            inputServiceTitle.setError(getString(R.string.error_field_required));
+            focusView = inputServiceTitle;
+            cancel = true;
+        }
+        // Check for a non empty adresse.
+        if (TextUtils.isEmpty(adresse)) {
+            inputServiceAdresse.setError(getString(R.string.error_field_required));
+            focusView = inputServiceAdresse;
+            cancel = true;
+        }
+        // Check for a non empty description.
+        if (TextUtils.isEmpty(description)) {
+            inputServiceDescription.setError(getString(R.string.error_field_required));
+            focusView = inputServiceDescription;
+            cancel = true;
+        }
+
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
+            // kick off a background task to
+            // perform the create service attempt.
+            new CreateNewService().execute();
+        }
+    }
+
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
 
     }
-    */
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
+    }
+
 
     /**
      * Background Async Task to Create new product

@@ -74,10 +74,12 @@
 
             <Button
                 android:id="@+id/button_register"
+                style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="registerButton"
-                android:text="@string/action_register" />
+                android:text="@string/action_register"
+                android:textStyle="bold"/>
 
             <WebView
                 android:id="@+id/CookieLoader"

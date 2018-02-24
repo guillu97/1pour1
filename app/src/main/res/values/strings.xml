@@ -34,6 +34,8 @@
     <string name="text_date_fin">Date end</string>
     <string name="text_add_service">Add Service</string>
 
+    <!-- for add service activity -->
     <string name="pick_time">Choose Time</string>
     <string name="pick_date">Choose Date</string>
+    <string name="prompt_service_title">Title</string>
 </resources>
