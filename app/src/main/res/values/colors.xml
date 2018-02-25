@@ -7,4 +7,14 @@
     <color name="jaune">#F7D358</color>
     <color name="bleuClair">#58D3F7</color>
     <color name="blanc">#FFFFFF</color>
+    <color name="bleu1">#5858FA</color>
+    <color name="bleu2">#5882FA</color>
+    <color name="bleu3">#58ACFA</color>
+    <color name="bleu4">#58D3F7</color>
+    <color name="bleu5">#819FF7</color>
+    <color name="bleu6">#81BEF7</color>
+    <color name="bleu7">#81BEF7</color>
+    <color name="bleu8">#8181F7</color>
+    <color name="bleu9">#81DAF5</color>
+    <color name="darkbleu">#E8E8E8</color>
 </resources>
