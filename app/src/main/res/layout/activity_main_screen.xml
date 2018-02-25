@@ -46,7 +46,8 @@
             android:id="@+id/btnViewServices"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="View Services" />
+            android:text="View Services"
+            android:onClick="viewAllServicesButton"/>
 
         <Button
             android:id="@+id/btnViewMy"
