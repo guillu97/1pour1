@@ -72,6 +72,10 @@
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_between_button" />
+
             <Button
                 android:id="@+id/button_register"
                 style="?android:textAppearanceSmall"

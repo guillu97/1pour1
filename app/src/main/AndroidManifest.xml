@@ -33,16 +33,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <!-- All Product Activity -->
         <activity
             android:name=".AllProductsActivity"
-            android:label="All Products" />
+            android:label="All Products"
+            android:parentActivityName=".MainScreenActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainScreenActivity" />
+        </activity>
 
         <!-- All Service Activity -->
         <activity
             android:name=".AllServicesActivity"
-            android:label="All Services" />
-
+            android:label="All Services"
+            android:parentActivityName=".MainScreenActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainScreenActivity" />
+        </activity>
         <!-- Add Product Activity -->
         <activity
             android:name=".NewProductActivity"
@@ -57,9 +67,11 @@
         <activity
             android:name=".EditProductActivity"
             android:label="Edit Product" />
+
         <activity
             android:name=".MainScreenActivity"
-            android:label="@string/title_activity_login" />
+            android:label="Hello" />
+
         <activity
             android:name=".activity_register"
             android:parentActivityName=".LoginActivity">
@@ -67,6 +79,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LoginActivity" />
         </activity>
+
         <activity
             android:name=".AddProductActivity"
             android:parentActivityName=".MainScreenActivity">
@@ -74,7 +87,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainScreenActivity" />
         </activity>
-        <activity android:name=".AddServiceActivity"></activity>
+
+        <activity
+            android:name=".AddServiceActivity"
+            android:parentActivityName=".MainScreenActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainScreenActivity" />
+        </activity>
     </application>
 
 </manifest>
