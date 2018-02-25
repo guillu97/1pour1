@@ -53,6 +53,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainScreenActivity" />
         </activity>
+
+        <!-- All My Services and Products Activity -->
+        <activity
+            android:name=".MyServicesProductsActivity"
+            android:label="All My Services and Products"
+            android:parentActivityName=".MainScreenActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainScreenActivity" />
+        </activity>
+
         <!-- Add Product Activity -->
         <activity
             android:name=".NewProductActivity"

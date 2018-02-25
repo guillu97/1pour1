@@ -64,7 +64,8 @@
             android:id="@+id/btnViewMy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="View My Product/Services" />
+            android:text="View My Products/Services"
+            android:onClick="viewMyButton"/>
 
         <Space
             android:layout_width="match_parent"

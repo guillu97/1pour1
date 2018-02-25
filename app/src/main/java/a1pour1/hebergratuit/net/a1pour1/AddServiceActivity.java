@@ -202,12 +202,14 @@ public class AddServiceActivity extends AppCompatActivity implements LoaderManag
         @Override
         protected void onPreExecute() {
 
+            /*
             super.onPreExecute();
             pDialog = new ProgressDialog(AddServiceActivity.this);
             pDialog.setMessage("Creating Service...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();
+            */
 
 
         }

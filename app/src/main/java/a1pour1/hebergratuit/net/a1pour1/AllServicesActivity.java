@@ -36,7 +36,7 @@ public class AllServicesActivity extends ListActivity {
 
     ArrayList<HashMap<String, String>> servicesList;
 
-    // url to get all products list
+    // url to get all services list
     private static String url_all_services = "http://1pour1.hebergratuit.net/get_all_services.php";
 
     // JSON Node names
@@ -181,11 +181,11 @@ public class AllServicesActivity extends ListActivity {
                 int success = json.getInt(TAG_SUCCESS);
 
                 if (success == 1) {
-                    // products found
-                    // Getting Array of Products
+                    // services found
+                    // Getting Array of Services
                     services = json.getJSONArray(TAG_SERVICES);
 
-                    // looping through All Products
+                    // looping through All Services
                     for (int i = 0; i < services.length(); i++) {
                         JSONObject c = services.getJSONObject(i);
 

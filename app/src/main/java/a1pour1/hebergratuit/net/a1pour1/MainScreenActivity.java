@@ -139,6 +139,9 @@ public class MainScreenActivity extends AppCompatActivity {
     public void viewAllServicesButton(View view){
         startActivity(new Intent(this, AllServicesActivity.class));
     }
+    public void viewMyButton(View view){
+        startActivity(new Intent(this, MyServicesProductsActivity.class));
+    }
 
     @Override
     public boolean onNavigateUp() {

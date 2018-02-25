@@ -162,14 +162,6 @@ public class AllProductsActivity extends ListActivity {
 
 
 
-
-
-            // getting JSON string from URL
-            //StringRequest strReq = jParser.volleyStringRequest(url_all_products);
-            // Adding String request to request queue
-            //String  REQUEST_TAG = "net.hebergratuit.1pour1.volleyJsonObjectRequest";
-
-
             JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
 
 

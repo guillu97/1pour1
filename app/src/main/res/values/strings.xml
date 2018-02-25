@@ -38,4 +38,8 @@
     <string name="pick_time">Choose Time</string>
     <string name="pick_date">Choose Date</string>
     <string name="prompt_service_title">Title</string>
+
+    <!-- for my products/ services layout -->
+    <string name="prompt_my_products">My Products</string>
+    <string name="prompt_my_services">My Services</string>
 </resources>
