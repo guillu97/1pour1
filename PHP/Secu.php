@@ -42,4 +42,6 @@
 			);
 		}
 	}
+
+	echo Secu::antiinjection("DELETE * FROM Here;");
 ?>
