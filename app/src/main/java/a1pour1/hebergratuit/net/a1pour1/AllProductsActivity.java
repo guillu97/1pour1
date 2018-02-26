@@ -203,7 +203,7 @@ public class AllProductsActivity extends ListActivity {
                     // no products found
                     // Launch Add New product Activity
                     Intent i = new Intent(getApplicationContext(),
-                            NewProductActivity.class);
+                            AddProductActivity.class);
                     // Closing all previous activities
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);

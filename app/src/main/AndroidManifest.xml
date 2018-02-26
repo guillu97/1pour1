@@ -65,14 +65,6 @@
         </activity>
 
         <!-- Add Product Activity -->
-        <activity
-            android:name=".NewProductActivity"
-            android:label="Add New Product"
-            android:parentActivityName=".MainScreenActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainScreenActivity" />
-        </activity>
 
         <!-- Edit Product Activity -->
         <activity

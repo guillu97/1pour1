@@ -13,17 +13,20 @@
         android:padding="10dip" >
 
         <!-- TODO: s'il y a trop de prods, les services ne s'affichent pas -->
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+
             android:text="@string/prompt_my_products" />
 
 
         <ListView
             android:id="@+id/listProd"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4">
         </ListView>
 
 
@@ -37,7 +40,8 @@
             android:id="@+id/listServ"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/listProd">
+            android:layout_below="@+id/listProd"
+            android:layout_weight="0.6">
         </ListView>
     </LinearLayout>
 </ScrollView>

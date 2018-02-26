@@ -280,7 +280,7 @@ public class MyServicesProductsActivity extends AppCompatActivity {
                     // no products and services found
                     // Launch Add New product Activity
                     Intent i = new Intent(getApplicationContext(),
-                            NewProductActivity.class);
+                            AddServiceActivity.class);
                     // Closing all previous activities
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);

@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/1pour1.iml" filepath="$PROJECT_DIR$/1pour1.iml" />
       <module fileurl="file://C:\Users\siisc_000\AndroidStudioProjects\1pour1Antoine\1pour1.iml" filepath="C:\Users\siisc_000\AndroidStudioProjects\1pour1Antoine\1pour1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/1pour1Antoine.iml" filepath="$PROJECT_DIR$/1pour1Antoine.iml" />
       <module fileurl="file://C:\Users\SPORE\AndroidStudioProjects\1pour1\.idea\1pour1Antoine.iml" filepath="C:\Users\SPORE\AndroidStudioProjects\1pour1\.idea\1pour1Antoine.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\siisc_000\AndroidStudioProjects\1pour1Antoine\app\app.iml" filepath="C:\Users\siisc_000\AndroidStudioProjects\1pour1Antoine\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/volley/volley.iml" filepath="$PROJECT_DIR$/volley/volley.iml" />
-      <module fileurl="file://C:\Users\siisc_000\AndroidStudioProjects\1pour1Antoine\volley\volley.iml" filepath="C:\Users\siisc_000\AndroidStudioProjects\1pour1Antoine\volley\volley.iml" />
     </modules>
   </component>
 </project>

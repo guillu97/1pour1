@@ -33,6 +33,7 @@
         <item name="android:shadowRadius">5</item>
         <item name="android:gravity">center_vertical|center_horizontal</item>
         <item name="android:fontFamily">@font/pacifico</item>
+        <item name="android:textSize">25sp</item>
     </style>
 
     <!--List style-->

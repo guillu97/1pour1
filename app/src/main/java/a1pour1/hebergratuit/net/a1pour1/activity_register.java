@@ -83,7 +83,7 @@ public class activity_register extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             /*
-            pDialog = new ProgressDialog(NewProductActivity.this);
+            pDialog = new ProgressDialog(activity_register.this);
             pDialog.setMessage("Creating Product..");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);

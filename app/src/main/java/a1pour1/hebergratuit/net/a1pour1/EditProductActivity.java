@@ -156,8 +156,8 @@ public class EditProductActivity extends AppCompatActivity {
 
                             // product with this pid found
                             // Edit Text
-                            txtName = findViewById(R.id.inputName);
-                            txtPrice = findViewById(R.id.inputPrice);
+                            txtName = findViewById(R.id.inputNewBrand);
+                            txtPrice = findViewById(R.id.inputAge);
                             txtDesc = findViewById(R.id.inputDesc);
 
                             // display product data in EditText
