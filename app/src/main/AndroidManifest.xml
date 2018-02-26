@@ -66,15 +66,14 @@
 
         <!-- Add Product Activity -->
 
+
         <!-- Edit Product Activity -->
         <activity
             android:name=".EditProductActivity"
             android:label="Edit Product" />
-
         <activity
             android:name=".MainScreenActivity"
             android:label="Hello" />
-
         <activity
             android:name=".activity_register"
             android:parentActivityName=".LoginActivity">
@@ -82,7 +81,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LoginActivity" />
         </activity>
-
         <activity
             android:name=".AddProductActivity"
             android:parentActivityName=".MainScreenActivity">
@@ -90,7 +88,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainScreenActivity" />
         </activity>
-
         <activity
             android:name=".AddServiceActivity"
             android:parentActivityName=".MainScreenActivity">
@@ -98,6 +95,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainScreenActivity" />
         </activity>
+        <activity android:name=".EditServicesActivity"></activity>
     </application>
 
 </manifest>

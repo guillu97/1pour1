@@ -141,7 +141,7 @@ public class MyServicesProductsActivity extends AppCompatActivity {
 
                 // Starting new intent
                 Intent in = new Intent(getApplicationContext(),
-                        EditProductActivity.class);
+                        EditServicesActivity.class);
                 // sending pid to next activity
                 in.putExtra(TAG_SERVICEID, serviceId);
 
