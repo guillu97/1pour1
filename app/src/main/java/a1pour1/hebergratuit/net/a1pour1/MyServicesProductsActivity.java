@@ -56,7 +56,8 @@ public class MyServicesProductsActivity extends AppCompatActivity {
     private static final String TAG_SERVICEID = "ServiceId";
     private static final String TAG_TITLE = "Titre";
     //private static final String TAG_MARQUE = "Marque";
-    //private static final String TAG_DESCRIPTION = "Description";
+
+    private static final String TAG_DESCRIPTION = "Description";
 
     private static final String TAG_CHECK_PRODUCTS = "checkProduits";
     private static final String TAG_CHECK_SERVICES = "checkServices";
@@ -235,6 +236,7 @@ public class MyServicesProductsActivity extends AppCompatActivity {
                             // Storing each json item in variable
                             String id = c.getString(TAG_PID);
                             String name = c.getString(TAG_NAME);
+                            String description = c.getString(TAG_DESCRIPTION);
 
                             // creating new HashMap
                             HashMap<String, String> map = new HashMap<String, String>();
@@ -242,6 +244,7 @@ public class MyServicesProductsActivity extends AppCompatActivity {
                             // adding each child node to HashMap key => value
                             map.put(TAG_PID, id);
                             map.put(TAG_NAME, name);
+                            map.put(TAG_DESCRIPTION, description);
 
                             // adding HashList to ArrayList
                             productsList.add(map);
@@ -259,6 +262,7 @@ public class MyServicesProductsActivity extends AppCompatActivity {
                             // Storing each json item in variable
                             String id = c.getString(TAG_SERVICEID);
                             String title = c.getString(TAG_TITLE);
+                            String description = c.getString(TAG_DESCRIPTION);
 
                             // creating new HashMap
                             HashMap<String, String> map = new HashMap<String, String>();
@@ -266,6 +270,7 @@ public class MyServicesProductsActivity extends AppCompatActivity {
                             // adding each child node to HashMap key => value
                             map.put(TAG_SERVICEID, id);
                             map.put(TAG_TITLE, title);
+                            map.put(TAG_DESCRIPTION, description);
 
                             // adding HashList to ArrayList
                             servicesList.add(map);
@@ -305,16 +310,16 @@ public class MyServicesProductsActivity extends AppCompatActivity {
                     ListAdapter adapterProducts = new SimpleAdapter(
                             MyServicesProductsActivity.this, productsList,
                             R.layout.list_item, new String[] { TAG_PID,
-                            TAG_NAME},
+                            TAG_NAME, TAG_DESCRIPTION},
 
-                            new int[] { R.id.pid, R.id.name });
+                            new int[] { R.id.pid, R.id.name, R.id.productDescription });
 
                     ListAdapter adapterServices = new SimpleAdapter(
                             MyServicesProductsActivity.this, servicesList,
                             R.layout.list_service, new String[] { TAG_SERVICEID,
-                            TAG_TITLE},
+                            TAG_TITLE, TAG_DESCRIPTION},
 
-                            new int[] { R.id.serviceId, R.id.serviceTitre });
+                            new int[] { R.id.serviceId, R.id.serviceTitre, R.id.serviceDescription });
 
                     // updating listview
                     listViewProd.setAdapter(adapterProducts);

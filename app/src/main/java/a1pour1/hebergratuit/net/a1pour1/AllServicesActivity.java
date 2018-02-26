@@ -44,7 +44,7 @@ public class AllServicesActivity extends ListActivity {
     private static final String TAG_SERVICES = "Services";
     private static final String TAG_SERVICEID = "ServiceId";
     private static final String TAG_TITLE = "Titre";
-
+    private static final String TAG_DESCRIPTION = "Description";
 
 
     // products JSONArray
@@ -86,6 +86,7 @@ public class AllServicesActivity extends ListActivity {
 
         // on selecting single product
         // launching Edit Product Screen
+        /*
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -105,6 +106,7 @@ public class AllServicesActivity extends ListActivity {
                 startActivityForResult(in, 100);
             }
         });
+        */
 
     }
 
@@ -192,6 +194,7 @@ public class AllServicesActivity extends ListActivity {
                         // Storing each json item in variable
                         String id = c.getString(TAG_SERVICEID);
                         String title = c.getString(TAG_TITLE);
+                        String description = c.getString(TAG_DESCRIPTION);
 
                         // creating new HashMap
                         HashMap<String, String> map = new HashMap<String, String>();
@@ -199,6 +202,7 @@ public class AllServicesActivity extends ListActivity {
                         // adding each child node to HashMap key => value
                         map.put(TAG_SERVICEID, id);
                         map.put(TAG_TITLE, title);
+                        map.put(TAG_DESCRIPTION, description);
 
                         // adding HashList to ArrayList
                         servicesList.add(map);
@@ -238,9 +242,9 @@ public class AllServicesActivity extends ListActivity {
                     ListAdapter adapter = new SimpleAdapter(
                             AllServicesActivity.this, servicesList,
                             R.layout.list_service, new String[] { TAG_SERVICEID,
-                            TAG_TITLE},
+                            TAG_TITLE, TAG_DESCRIPTION},
 
-                            new int[] { R.id.serviceId, R.id.serviceTitre });
+                            new int[] { R.id.serviceId, R.id.serviceTitre, R.id.serviceDescription});
                     // updating listview
                     setListAdapter(adapter);
 

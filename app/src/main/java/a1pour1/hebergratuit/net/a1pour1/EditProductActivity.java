@@ -50,11 +50,11 @@ public class EditProductActivity extends AppCompatActivity {
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
-    private static final String TAG_PRODUCT = "product";
-    private static final String TAG_PID = "productID";
-    private static final String TAG_NAME = "name";
+    private static final String TAG_PRODUCT = "Produit";
+    private static final String TAG_PID = "ProduitId";
+    private static final String TAG_NAME = "Nom";
     private static final String TAG_PRICE = "price";
-    private static final String TAG_DESCRIPTION = "description";
+    private static final String TAG_DESCRIPTION = "Description";
 
 
 
@@ -268,12 +268,14 @@ public class EditProductActivity extends AppCompatActivity {
          * */
         @Override
         protected void onPreExecute() {
+
             super.onPreExecute();
             pDialog = new ProgressDialog(EditProductActivity.this);
             pDialog.setMessage("Deleting Product...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();
+
         }
 
         /**
@@ -286,7 +288,8 @@ public class EditProductActivity extends AppCompatActivity {
             try {
                 // Building Parameters
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("productID", pid));
+                Log.d("PID",pid);
+                params.add(new BasicNameValuePair("ProduitId", pid));
 
                 // getting product details by making HTTP request
                 JSONObject json = jsonParser.makeHttpRequest(
@@ -305,7 +308,7 @@ public class EditProductActivity extends AppCompatActivity {
                     // notify previous activity by sending code 100
                     Intent i = getIntent();
                     // send result code 100 to notify about product deletion
-                    setResult(100, i);
+                    setResult( 100, i);
                     finish();
                 }
             } catch (JSONException e) {
