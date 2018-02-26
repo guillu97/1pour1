@@ -26,8 +26,8 @@ if (isset($_GET["ProduitId"])) {
     
     $pid = $_GET['ProduitId'];
  
-    // get a product from products table
-    $sql = "SELECT *FROM products WHERE ProduitId = $pid";
+    // get a product from Produit table
+    $sql = "SELECT *FROM Produit WHERE ProduitId = $pid";
     $result = $conn->query($sql);
 
     if ($result) {
@@ -55,7 +55,7 @@ if (isset($_GET["ProduitId"])) {
         } else {
             // no product found
             $response["success"] = 0;
-            $response["message"] = "No product found";
+            $response["message"] = "1 No product found";
  
             // echo no users JSON
             echo json_encode($response);
@@ -63,7 +63,7 @@ if (isset($_GET["ProduitId"])) {
     } else {
         // no product found
         $response["success"] = 0;
-        $response["message"] = "No product found";
+        $response["message"] = "2 No product found";
  
         // echo no users JSON
         echo json_encode($response);
