@@ -38,7 +38,7 @@ ModId
 
 // à remettre lorsque GET <-> POST
 
-if ( isset($_POST['ProduitId'])  && isset($_POST['Marque']) && isset($_POST['Age']) && isset($_POST['Description'])  ) {
+if ( isset($_POST['ProduitId'])  && isset($_POST['Marque']) && isset($_POST['Age']) && isset($_POST['Description']) && isset($_POST['UsagerId'])  ) {
  
  
 
@@ -48,7 +48,7 @@ if ( isset($_POST['ProduitId'])  && isset($_POST['Marque']) && isset($_POST['Age
     $description = $_POST['Description'];
     $age = $_POST['Age'];
     //$dateMisenL = $_POST['DateMisenL'];
-    //$UsagerId = $_POST['UsagerId'];
+    $usagerId = $_POST['UsagerId'];
     //$dateValidation = $_POST['DateValidation'];
     //$modId = $_POST['ModId'];
     
@@ -77,7 +77,7 @@ if ( isset($_GET['ProduitId']) && isset($_GET['Nom']) && isset($_GET['Marque']) 
 
  
     // mysql update row with matched pid
-    $sql = "UPDATE Produit SET  Marque = '$marque', Description = '$description', Age = $age WHERE ProduitId = $produitId";
+    $sql = "UPDATE Produit SET  Marque = '$marque', Description = '$description', Age = $age WHERE ProduitId = $produitId AND UsagerId = $usagerId";
     $result = $conn->query($sql);
  
     // check if row inserted or not

@@ -116,8 +116,9 @@ public class AddProductActivity extends AppCompatActivity {
 
                 if (success == 1) {
                     // successfully created product
-                    Intent i = new Intent(getApplicationContext(), AllProductsActivity.class);
+                    Intent i = new Intent(getApplicationContext(), MyServicesProductsActivity.class);
                     startActivity(i);
+
 
                     // closing this screen
                     finish();
