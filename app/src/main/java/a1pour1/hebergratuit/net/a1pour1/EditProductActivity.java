@@ -140,9 +140,9 @@ public class EditProductActivity extends AppCompatActivity {
 
 
                         // getting product details by making HTTP request
-                        // Note that product details url will use GET request
+                        // Note that product details url will use POST request
                         JSONObject json = jsonParser.makeHttpRequest(
-                                url_product_details, "GET", params);
+                                url_product_details, "POST", params);
 
 
                         // check your log for json response
@@ -167,6 +167,7 @@ public class EditProductActivity extends AppCompatActivity {
 
                             // display product data in EditText
                             txtName.setText(product.getString(TAG_NAME));
+                            txtBrand.setText(product.getString(TAG_BRAND));
                             txtAge.setText(product.getString(TAG_AGE));
                             txtDesc.setText(product.getString(TAG_DESCRIPTION));
 
@@ -215,7 +216,7 @@ public class EditProductActivity extends AppCompatActivity {
         protected String doInBackground(String... args) {
 
             // getting updated data from EditTexts
-            String name = txtName.getText().toString();
+            //String name = txtName.getText().toString();
             String brand = txtBrand.getText().toString();
             String age = txtAge.getText().toString();
             String description = txtDesc.getText().toString();
@@ -223,7 +224,7 @@ public class EditProductActivity extends AppCompatActivity {
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair(TAG_PID, pid));
-            params.add(new BasicNameValuePair(TAG_NAME, name));
+            //params.add(new BasicNameValuePair(TAG_NAME, name));
             params.add(new BasicNameValuePair(TAG_BRAND, brand));
             params.add(new BasicNameValuePair(TAG_AGE, age));
             params.add(new BasicNameValuePair(TAG_DESCRIPTION, description));
@@ -231,7 +232,7 @@ public class EditProductActivity extends AppCompatActivity {
             // sending modified data through http request
             // Notice that update product url accepts POST method
             JSONObject json = jsonParser.makeHttpRequest(url_update_product,
-                    "GET", params);
+                    "POST", params);
 
             // check json success tag
             try {

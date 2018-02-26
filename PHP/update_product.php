@@ -36,23 +36,23 @@ ModId
 
 // check for required fields
 
-// TODO : à remettre lorsque GET -> POST
+// à remettre lorsque GET <-> POST
 
-//if ( isset($_POST['ProduitId']) && isset($_POST['Nom']) && isset($_POST['Marque']) && isset($_POST['Description']) && isset($_POST['Age']) && isset($_POST['DateMisenL']) && isset($_POST['UsagerId']) && isset($_POST['DateValidation']) && isset($_POST['ModId']) ) {
+if ( isset($_POST['ProduitId'])  && isset($_POST['Marque']) && isset($_POST['Age']) && isset($_POST['Description'])  ) {
  
- /*
+ 
 
     $produitId = $_POST['ProduitId'];
-    $nom = $_POST['Nom'];
+    //$nom = $_POST['Nom'];
     $marque = $_POST['Marque'];
     $description = $_POST['Description'];
     $age = $_POST['Age'];
-    $dateMisenL = $_POST['DateMisenL'];
-    $UsagerId = $_POST['UsagerId'];
-    $dateValidation = $_POST['DateValidation'];
-    $modId = $_POST['ModId'];
-    */
-
+    //$dateMisenL = $_POST['DateMisenL'];
+    //$UsagerId = $_POST['UsagerId'];
+    //$dateValidation = $_POST['DateValidation'];
+    //$modId = $_POST['ModId'];
+    
+/*
 if ( isset($_GET['ProduitId']) && isset($_GET['Nom']) && isset($_GET['Marque']) && isset($_GET['Description']) && isset($_GET['Age']) && isset($_GET['DateMisenL']) && isset($_GET['UsagerId']) && isset($_GET['DateValidation']) && isset($_GET['ModId']) ) {
 
     $produitId = $_GET['ProduitId'];
@@ -64,6 +64,7 @@ if ( isset($_GET['ProduitId']) && isset($_GET['Nom']) && isset($_GET['Marque']) 
     $usagerId = $_GET['UsagerId'];
     $dateValidation = $_GET['DateValidation'];
     $modId = $_GET['ModId'];
+    */
 
 
 
@@ -76,7 +77,7 @@ if ( isset($_GET['ProduitId']) && isset($_GET['Nom']) && isset($_GET['Marque']) 
 
  
     // mysql update row with matched pid
-    $sql = "UPDATE Produit SET ProduitId = $produitId, Nom = '$nom', Description = '$description', Age = $age, DateMisenL = '$dateMisenL', UsagerId = $usagerId, DateValidation = '$dateValidation', ModId = $modId WHERE ProduitId = $produitId";
+    $sql = "UPDATE Produit SET  Marque = '$marque', Description = '$description', Age = $age WHERE ProduitId = $produitId";
     $result = $conn->query($sql);
  
     // check if row inserted or not

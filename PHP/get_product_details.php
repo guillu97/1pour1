@@ -22,9 +22,14 @@ echo "JSON:";
 
 // check for post data
 
-if (isset($_GET["ProduitId"])) {
-    
-    $pid = $_GET['ProduitId'];
+//if GET <-> POST à remettre
+//if (isset($_GET["ProduitId"])) {
+
+if (isset($_POST["ProduitId"])) {
+	
+    //$pid = $_GET['ProduitId'];
+
+    $pid = $_POST['ProduitId'];
  
     // get a product from Produit table
     $sql = "SELECT *FROM Produit WHERE ProduitId = $pid";
@@ -39,6 +44,7 @@ if (isset($_GET["ProduitId"])) {
             $product["ProduitId"] = $result["ProduitId"];
             $product["Nom"] = $result["Nom"];
             $product["Marque"] = $result["Marque"];
+            $product["Age"] = $result["Age"];
             $product["Description"] = $result["Description"];
             //$product["created_at"] = $result["created_at"];
             //$product["updated_at"] = $result["updated_at"];
