@@ -42,13 +42,13 @@ if ( isset($_POST['ProduitId'])  && isset($_POST['Marque']) && isset($_POST['Age
  
  
 
-    $produitId = Secu::antiinjection($_POST['ProduitId']);
+    $produitId = $_POST['ProduitId'];
     //$nom = $_POST['Nom'];
-    $marque = Secu::antiinjection($_POST['Marque']);
-    $description = Secu::antiinjection($_POST['Description']);
-    $age = Secu::antiinjection($_POST['Age']);
+    $marque = $_POST['Marque'];
+    $description = $_POST['Description'];
+    $age = $_POST['Age'];
     //$dateMisenL = $_POST['DateMisenL'];
-    $usagerId = Secu::antiinjection($_POST['UsagerId']);
+    $usagerId = $_POST['UsagerId'];
     //$dateValidation = $_POST['DateValidation'];
     //$modId = $_POST['ModId'];
     

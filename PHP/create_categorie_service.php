@@ -43,7 +43,7 @@ if ( isset($_GET['NomCatServ']) ){
 
     */
 
-    $nomCatServ = Secu::antiinjection($_GET['NomCatServ']);
+    $nomCatServ = $_GET['NomCatServ'];
     
 
 
@@ -56,9 +56,9 @@ if ( isset($_GET['NomCatServ']) ){
     // mysqli inserting a new row
 
     //INSERT INTO CategorieServ(NomCatServ ) VALUES('test')
-
-    $sql = "INSERT INTO CategorieServ(NomCatServ) VALUES('$nomCatServ')";
-    $result = $conn->query($sql);
+    $stmt = $link->prepare("INSERT INTO CategorieServ(NomCatServ) VALUES(?)");
+    $stmt->bind_param("s", $nomCatServ);
+    $stmt->execute();
 
  
     // check if row inserted or not

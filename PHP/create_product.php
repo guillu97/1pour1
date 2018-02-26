@@ -43,11 +43,11 @@ ModId
 
 if (isset($_POST['Nom']) && isset($_POST['Marque']) && isset($_POST['Description']) && isset($_POST['Age']) && isset($_POST['UsagerId'])) {
 
-    $nom = Secu::antiinjection($_POST['Nom']);
-    $marque = Secu::antiinjection($_POST['Marque']);
-    $description = Secu::antiinjection($_POST['Description']);
-    $age = Secu::antiinjection($_POST['Age']);
-    $usagerId = Secu::antiinjection($_POST['UsagerId']);
+    $nom = $_POST['Nom'];
+    $marque = $_POST['Marque'];
+    $description = $_POST['Description'];
+    $age = $_POST['Age'];
+    $usagerId = $_POST['UsagerId'];
 
 
     // get the date in year-month-day hour:min:second     i.e.  2018-02-06 12:52:46
@@ -59,9 +59,9 @@ if (isset($_POST['Nom']) && isset($_POST['Marque']) && isset($_POST['Description
 
 
     // mysqli inserting a new row
-
-    $sql = "INSERT INTO Produit(Nom, Marque, Description, Age, DateMisenL, UsagerId ) VALUES('$nom', '$marque', '$description', '$age', '$dateMisenL' ,'$usagerId')";
-    $result = $conn->query($sql);
+    $stmt = $link->prepare("INSERT INTO Produit(Nom, Marque, Description, Age, DateMisenL, UsagerId ) VALUES(?,?,?,?,?,?)");
+    $stmt->bind_param("sssisi",$nom, $marque, $description, $age, $dateMisenL ,$usagerId);
+    $stmt->execute();
 
  
     // check if row inserted or not

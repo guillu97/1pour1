@@ -26,7 +26,7 @@ echo "JSON:";
 if (isset($_POST['ProduitId'])) {
 //if (isset($_GET['ProduitId'])) {
 
-    $pid = Secu::antiinjection($_POST['ProduitId']);
+    $pid = $_POST['ProduitId'];
 	//$pid = $_GET['ProduitId'];
  
 
