@@ -21,18 +21,20 @@ echo "JSON:";
  
 // check for required fields
 
-if (isset($_POST['productID'])) {
 
+//TODO: à remettre si GET<->POST
+if (isset($_POST['ProduitId'])) {
+//if (isset($_GET['ProduitId'])) {
 
-    $pid = $_POST['productID'];
-
+    $pid = $_POST['ProduitId'];
+	//$pid = $_GET['ProduitId'];
  
 
  
 
  
     // mysqli delete row with matched pid
-    $sql = "DELETE FROM products WHERE productID = $pid";
+    $sql = "DELETE FROM Produit WHERE ProduitId = $pid";
     $result = $conn->query($sql);
 
  
