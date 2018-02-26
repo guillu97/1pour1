@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -25,9 +26,11 @@ import java.util.List;
 
 public class EditProductActivity extends AppCompatActivity {
 
-    EditText txtName;
-    EditText txtPrice;
+    TextView txtName;
+    EditText txtBrand;
+    EditText txtAge;
     EditText txtDesc;
+
     Button btnSave;
     Button btnDelete;
 
@@ -53,7 +56,8 @@ public class EditProductActivity extends AppCompatActivity {
     private static final String TAG_PRODUCT = "Produit";
     private static final String TAG_PID = "ProduitId";
     private static final String TAG_NAME = "Nom";
-    private static final String TAG_PRICE = "price";
+    private static final String TAG_BRAND = "Marque";
+    private static final String TAG_AGE = "Age";
     private static final String TAG_DESCRIPTION = "Description";
 
 
@@ -131,7 +135,7 @@ public class EditProductActivity extends AppCompatActivity {
                     try {
                         // Building Parameters
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
-                        params.add(new BasicNameValuePair("productID", pid));
+                        params.add(new BasicNameValuePair("ProduitId", pid));
 
 
 
@@ -156,13 +160,14 @@ public class EditProductActivity extends AppCompatActivity {
 
                             // product with this pid found
                             // Edit Text
-                            txtName = findViewById(R.id.inputNewBrand);
-                            txtPrice = findViewById(R.id.inputAge);
+                            txtName = findViewById(R.id.name);
+                            txtBrand = findViewById(R.id.inputNewBrand);
+                            txtAge = findViewById(R.id.inputAge);
                             txtDesc = findViewById(R.id.inputDesc);
 
                             // display product data in EditText
                             txtName.setText(product.getString(TAG_NAME));
-                            txtPrice.setText(product.getString(TAG_PRICE));
+                            txtAge.setText(product.getString(TAG_AGE));
                             txtDesc.setText(product.getString(TAG_DESCRIPTION));
 
                         }else{
@@ -211,20 +216,22 @@ public class EditProductActivity extends AppCompatActivity {
 
             // getting updated data from EditTexts
             String name = txtName.getText().toString();
-            String price = txtPrice.getText().toString();
+            String brand = txtBrand.getText().toString();
+            String age = txtAge.getText().toString();
             String description = txtDesc.getText().toString();
 
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair(TAG_PID, pid));
             params.add(new BasicNameValuePair(TAG_NAME, name));
-            params.add(new BasicNameValuePair(TAG_PRICE, price));
+            params.add(new BasicNameValuePair(TAG_BRAND, brand));
+            params.add(new BasicNameValuePair(TAG_AGE, age));
             params.add(new BasicNameValuePair(TAG_DESCRIPTION, description));
 
             // sending modified data through http request
             // Notice that update product url accepts POST method
             JSONObject json = jsonParser.makeHttpRequest(url_update_product,
-                    "POST", params);
+                    "GET", params);
 
             // check json success tag
             try {
