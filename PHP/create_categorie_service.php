@@ -43,7 +43,7 @@ if ( isset($_GET['NomCatServ']) ){
 
     */
 
-    $nomCatServ = $_GET['NomCatServ'];
+    $nomCatServ = Secu::antiinjection($_GET['NomCatServ']);
     
 
 

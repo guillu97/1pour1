@@ -43,11 +43,11 @@ ModId
 
 if (isset($_POST['Nom']) && isset($_POST['Marque']) && isset($_POST['Description']) && isset($_POST['Age']) && isset($_POST['UsagerId'])) {
 
-    $nom = $_POST['Nom'];
-    $marque = $_POST['Marque'];
-    $description = $_POST['Description'];
-    $age = $_POST['Age'];
-    $usagerId = $_POST['UsagerId'];
+    $nom = Secu::antiinjection($_POST['Nom']);
+    $marque = Secu::antiinjection($_POST['Marque']);
+    $description = Secu::antiinjection($_POST['Description']);
+    $age = Secu::antiinjection($_POST['Age']);
+    $usagerId = Secu::antiinjection($_POST['UsagerId']);
 
 
     // get the date in year-month-day hour:min:second     i.e.  2018-02-06 12:52:46

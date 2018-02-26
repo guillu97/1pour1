@@ -43,7 +43,7 @@ if ( isset($_GET['NomCatProd']) ){
 
     */
 
-    $nomCatProd = $_GET['NomCatProd'];
+    $nomCatProd = Secu::antiinjection($_GET['NomCatProd']);
     
 
 

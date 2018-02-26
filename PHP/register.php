@@ -28,13 +28,13 @@ if (isset($_POST['Prenom']) && isset($_POST['Nom']) && isset($_POST['AdresseMail
  //if (isset($_GET['Prenom']) && isset($_GET['Nom']) && isset($_GET['AdresseMail']) && isset($_GET['NumTel']) && isset($_GET['Ville']) && isset($_GET['Adresse']) && isset($_GET['Mdp'])){
 
 
-    $prenom = $_POST['Prenom'];
-    $nom = $_POST['Nom'];
-    $adresseMail = $_POST['AdresseMail'];
-    $numTel = $_POST['NumTel'];
-    $ville = $_POST['Ville'];
-    $adresse = $_POST['Adresse'];
-    $mdp = $_POST['Mdp'];
+    $prenom = Secu::antiinjection($_POST['Prenom']);
+    $nom = Secu::antiinjection($_POST['Nom']);
+    $adresseMail = Secu::antiinjection($_POST['AdresseMail']);
+    $numTel = Secu::antiinjection($_POST['NumTel']);
+    $ville = Secu::antiinjection($_POST['Ville']);
+    $adresse = Secu::antiinjection($_POST['Adresse']);
+    $mdp = Secu::antiinjection($_POST['Mdp']);
     
 
 /*

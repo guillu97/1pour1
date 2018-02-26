@@ -46,10 +46,10 @@ if (isset($_POST['Titre']) && isset($_POST['DateExecution']) && isset($_POST['De
 
 //TODO: à remettre lorsque GET -> POST
 
-    $titre = $_POST['Titre'];
-    $dateExecution = $_POST['DateExecution'];
-    $description = $_POST['Description'];
-    $lieu = $_POST['Lieu'];
+    $titre = Secu::antiinjection($_POST['Titre']);
+    $dateExecution = Secu::antiinjection($_POST['DateExecution']);
+    $description = Secu::antiinjection($_POST['Description']);
+    $lieu = Secu::antiinjection($_POST['Lieu']);
 
 	// get the date in year-month-day hour:min:second     i.e.  2018-02-06 12:52:46
     date_default_timezone_set('Europe/Paris');

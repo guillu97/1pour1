@@ -55,15 +55,15 @@ ModId
 
 if ( isset($_GET['ServiceId']) && isset($_GET['Titre']) && isset($_GET['DateExecution']) && isset($_GET['Description']) && isset($_GET['Lieu']) && isset($_GET['DateMisenL']) && isset($_GET['UsagerId']) && isset($_GET['DateValidation']) && isset($_GET['ModId']) ) {
 
-    $serviceId = $_GET['ServiceId'];
-    $titre = $_GET['Titre'];
-    $dateExecution = $_GET['DateExecution'];
-    $description = $_GET['Description'];
-    $lieu = $_GET['Lieu'];
-    $dateMisenL = $_GET['DateMisenL'];
-    $UsagerId = $_GET['UsagerId'];
-    $dateValidation = $_GET['DateValidation'];
-    $modId = $_GET['ModId'];
+    $serviceId = Secu::antiinjection($_GET['ServiceId']);
+    $titre = Secu::antiinjection($_GET['Titre']);
+    $dateExecution = Secu::antiinjection($_GET['DateExecution']);
+    $description = Secu::antiinjection($_GET['Description']);
+    $lieu = Secu::antiinjection($_GET['Lieu']);
+    $dateMisenL = Secu::antiinjection($_GET['DateMisenL']);
+    $UsagerId = Secu::antiinjection($_GET['UsagerId']);
+    $dateValidation = Secu::antiinjection($_GET['DateValidation']);
+    $modId = Secu::antiinjection($_GET['ModId']);
 
 
 
