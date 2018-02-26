@@ -43,7 +43,7 @@ if ( isset($_GET['NomCatProd']) ){
 
     */
 
-    $nomCatProd = Secu::antiinjection($_GET['NomCatProd']);
+    $nomCatProd = $_GET['NomCatProd'];
     
 
 
@@ -57,8 +57,9 @@ if ( isset($_GET['NomCatProd']) ){
 
     //INSERT INTO CategorieProd(NomCatProd ) VALUES('test')
 
-    $sql = "INSERT INTO CategorieProd(NomCatProd) VALUES('$nomCatProd')";
-    $result = $conn->query($sql);
+    $stmt = $link->prepare("INSERT INTO CategorieProd(NomCatProd) VALUES (?)");
+    $stmt->bind_param("s", $nomCatProd);
+    $stmt->execute();
 
  
     // check if row inserted or not
