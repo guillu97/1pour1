@@ -59,6 +59,7 @@ public class EditProductActivity extends AppCompatActivity {
     private static final String TAG_BRAND = "Marque";
     private static final String TAG_AGE = "Age";
     private static final String TAG_DESCRIPTION = "Description";
+    private static final String TAG_USAGERID = "UsagerId";
 
 
 
@@ -228,6 +229,7 @@ public class EditProductActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair(TAG_BRAND, brand));
             params.add(new BasicNameValuePair(TAG_AGE, age));
             params.add(new BasicNameValuePair(TAG_DESCRIPTION, description));
+            params.add(new BasicNameValuePair(TAG_USAGERID, "" + Utilisateur.getId()));
 
             // sending modified data through http request
             // Notice that update product url accepts POST method
