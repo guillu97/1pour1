@@ -19,6 +19,13 @@ public class DatePickerFragment extends DialogFragment
     private int monthChosen;
     private int dayChosen;
 
+    public DatePickerFragment() {
+        final Calendar c = Calendar.getInstance();
+        this.yearChosen = c.get(Calendar.YEAR);
+        this.monthChosen = c.get(Calendar.MONTH);
+        this.dayChosen = c.get(Calendar.DAY_OF_MONTH);
+    }
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current date as the default date in the picker
@@ -48,5 +55,17 @@ public class DatePickerFragment extends DialogFragment
 
     public int getDayChosen() {
         return dayChosen;
+    }
+
+    public void setYearChosen(int yearChosen) {
+        this.yearChosen = yearChosen;
+    }
+
+    public void setMonthChosen(int monthChosen) {
+        this.monthChosen = monthChosen;
+    }
+
+    public void setDayChosen(int dayChosen) {
+        this.dayChosen = dayChosen;
     }
 }

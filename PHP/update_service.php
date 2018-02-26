@@ -38,21 +38,21 @@ ModId
 
 // TODO : à remettre lorsque GET -> POST
 
-//if ( isset($_POST['ServiceId']) && isset($_POST['Titre']) && isset($_POST['DateExecution']) && isset($_POST['Description']) && isset($_POST['Lieu']) && isset($_POST['DateMisenL']) && isset($_POST['UsagerId']) && isset($_POST['DateValidation']) && isset($_POST['ModId']) ) {
+if ( isset($_POST['ServiceId']) && isset($_POST['DateExecution']) && isset($_POST['Description']) && isset($_POST['Lieu']) && isset($_POST['UsagerId']) ) {
  
- /*
+ 
 
     $serviceId = $_POST['ServiceId'];
-    $titre = $_POST['Titre'];
+    //$titre = $_POST['Titre'];
     $dateExecution = $_POST['DateExecution'];
     $description = $_POST['Description'];
     $lieu = $_POST['Lieu'];
-    $dateMisenL = $_POST['DateMisenL'];
+    //$dateMisenL = $_POST['DateMisenL'];
     $UsagerId = $_POST['UsagerId'];
-    $dateValidation = $_POST['DateValidation'];
-    $modId = $_POST['ModId'];
-    */
-
+    //$dateValidation = $_POST['DateValidation'];
+    //$modId = $_POST['ModId'];
+    
+/*
 if ( isset($_GET['ServiceId']) && isset($_GET['Titre']) && isset($_GET['DateExecution']) && isset($_GET['Description']) && isset($_GET['Lieu']) && isset($_GET['DateMisenL']) && isset($_GET['UsagerId']) && isset($_GET['DateValidation']) && isset($_GET['ModId']) ) {
 
     $serviceId = Secu::antiinjection($_GET['ServiceId']);
@@ -64,7 +64,7 @@ if ( isset($_GET['ServiceId']) && isset($_GET['Titre']) && isset($_GET['DateExec
     $UsagerId = Secu::antiinjection($_GET['UsagerId']);
     $dateValidation = Secu::antiinjection($_GET['DateValidation']);
     $modId = Secu::antiinjection($_GET['ModId']);
-
+*/
 
 
     // get the date in year-month-day hour:min:second     i.e.  2018-02-06 12:52:46
@@ -75,8 +75,8 @@ if ( isset($_GET['ServiceId']) && isset($_GET['Titre']) && isset($_GET['DateExec
  
 
  
-    // mysql update row with matched pid
-    $sql = "UPDATE Service SET ServiceId = $serviceId, Titre = '$titre', DateExecution ='$dateExecution', Description = '$description', Lieu = $lieu, DateMisenL = '$dateMisenL', UsagerId = $usagerId, DateValidation = '$dateValidation', ModId = $modId WHERE ServiceId = $serviceId";
+    // mysql update row with matched serviceId
+    $sql = "UPDATE Service SET ServiceId = $serviceId, Lieu = '$lieu', Description = '$description', DateExecution ='$dateExecution' WHERE ServiceId = $serviceId";
 
     $result = $conn->query($sql);
  

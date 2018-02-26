@@ -147,7 +147,7 @@ public class EditProductActivity extends AppCompatActivity {
 
 
                         // check your log for json response
-                        Log.d("Single Product Details", json.toString());
+                        //Log.d("Single Product Details", json.toString());
 
                         // json success tag
                         success = json.getInt(TAG_SUCCESS);

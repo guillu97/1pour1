@@ -46,10 +46,17 @@ if (isset($_POST['Titre']) && isset($_POST['DateExecution']) && isset($_POST['De
 
 //TODO: à remettre lorsque GET -> POST
 
+/*
     $titre = mysqli::real_escape_string($_POST['Titre']);
     $dateExecution = mysqli::real_escape_string($_POST['DateExecution']);
     $description = mysqli::real_escape_string($_POST['Description']);
     $lieu = mysqli::real_escape_string($_POST['Lieu']);
+    */
+
+    $titre = $_POST['Titre'];
+    $dateExecution = $_POST['DateExecution'];
+    $description = $_POST['Description'];
+    $lieu = $_POST['Lieu'];
 
 	// get the date in year-month-day hour:min:second     i.e.  2018-02-06 12:52:46
     date_default_timezone_set('Europe/Paris');

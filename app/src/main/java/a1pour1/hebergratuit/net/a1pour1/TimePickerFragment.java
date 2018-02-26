@@ -20,6 +20,12 @@ public class TimePickerFragment extends DialogFragment
     private int hourOfDayChosen;
     private int minuteChosen;
 
+    public TimePickerFragment() {
+        final Calendar c = Calendar.getInstance();
+        this.hourOfDayChosen = c.get(Calendar.HOUR_OF_DAY);
+        this.minuteChosen = c.get(Calendar.MINUTE);
+    }
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current time as the default values for the picker
@@ -44,5 +50,13 @@ public class TimePickerFragment extends DialogFragment
 
     public int getMinuteChosen() {
         return minuteChosen;
+    }
+
+    public void setHourOfDayChosen(int hourOfDayChosen) {
+        this.hourOfDayChosen = hourOfDayChosen;
+    }
+
+    public void setMinuteChosen(int minuteChosen) {
+        this.minuteChosen = minuteChosen;
     }
 }

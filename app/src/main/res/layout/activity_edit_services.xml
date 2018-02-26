@@ -28,6 +28,13 @@
             android:layout_height="wrap_content"
             android:text="@string/text_title"
             android:textSize="24sp" />
+        <TextView
+            android:id="@+id/serviceName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NOM A METTRE"
+            android:gravity="left"
+            />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -58,7 +65,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <Button
                 android:id="@+id/buttonNewChooseTime"
@@ -74,19 +81,31 @@
         </TableRow>
 
 
+
+        <Button
+            android:id="@+id/btnServiceSave"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="Save Changes"
+            />
+
+        <Button
+            android:id="@+id/btnServiceDelete"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="Delete"
+            />
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonNewCreateService"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginBottom="64dp"
-        android:text="@string/text_add_service"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline2"
