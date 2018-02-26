@@ -46,9 +46,9 @@ if (isset($_GET["ProduitId"])) {
             $response["success"] = 1;
  
             // user node
-            $response["product"] = array();
+            $response["Produit"] = array();
  
-            array_push($response["product"], $product);
+            array_push($response["Produit"], $product);
  
             // echoing JSON response
             echo json_encode($response);
