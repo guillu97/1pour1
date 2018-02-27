@@ -77,9 +77,12 @@ if ( isset($_GET['ProduitId']) && isset($_GET['Nom']) && isset($_GET['Marque']) 
 
  
     // mysql update row with matched pid
-    $sql = "UPDATE Produit SET  Marque = '$marque', Description = '$description', Age = $age WHERE ProduitId = $produitId AND UsagerId = $usagerId";
-    $result = $conn->query($sql);
- 
+    //$sql = "UPDATE Produit SET  Marque = '$marque', Description = '$description', Age = $age WHERE ProduitId = $produitId AND UsagerId = $usagerId";
+    //$result = $conn->query($sql);
+ 	
+ 	$stmt = $conn->prepare("UPDATE Produit SET Marque = ?, Description = ?, Age = ? WHERE ProduitId = ? AND UsagerId = ?");
+ 	$stmt->bind_param('ssiii',$marque, $description, $age, $produitId, $usagerId);
+ 	$result = $stmt->execute();
     // check if row inserted or not
     if ($result) {
         // successfully updated

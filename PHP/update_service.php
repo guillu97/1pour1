@@ -76,10 +76,13 @@ if ( isset($_GET['ServiceId']) && isset($_GET['Titre']) && isset($_GET['DateExec
 
  
     // mysql update row with matched serviceId
-    $sql = "UPDATE Service SET ServiceId = $serviceId, Lieu = '$lieu', Description = '$description', DateExecution ='$dateExecution' WHERE ServiceId = $serviceId";
+    //$sql = "UPDATE Service SET ServiceId = $serviceId, Lieu = '$lieu', Description = '$description', DateExecution ='$dateExecution' WHERE ServiceId = $serviceId";
 
-    $result = $conn->query($sql);
+    //$result = $conn->query($sql);
  
+    $stmt = $conn->prepare("UPDATE Service SET Lieu = ?, Description = ?, DateExecution = ? WHERE ServiceId = ?");
+    $stmt->bind_param('sssi', $lieu, $description, $dateExecution, $serviceId);
+    $result = $stmt->execute();
     // check if row inserted or not
     if ($result) {
         // successfully updated
