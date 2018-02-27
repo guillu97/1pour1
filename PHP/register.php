@@ -34,7 +34,7 @@ if (isset($_POST['Prenom']) && isset($_POST['Nom']) && isset($_POST['AdresseMail
     $numTel = $_POST['NumTel'];
     $ville = $_POST['Ville'];
     $adresse = $_POST['Adresse'];
-    $mdp = $_POST['Mdp']);
+    $mdp = $_POST['Mdp'];
     
 
 /*
@@ -76,9 +76,12 @@ if (isset($_POST['Prenom']) && isset($_POST['Nom']) && isset($_POST['AdresseMail
             // there we register the user
 
             // mysql add the user to database
-            $stmt = $link->prepare("INSERT INTO Usager (Nom, Prenom, AdresseMail, Mdp, NumTel, Adresse, Ville) VALUES (?,?,?,?,?,?,?)");
-            $stmt->bind_param("ssssiss", $nom, $prenom, $adresseMail, $mdp, $numTel, $adresse, $ville);
-            $stmt->execute();
+            //$sql2 = "INSERT INTO Usager (Nom, Prenom, AdresseMail, Mdp, NumTel, Adresse, Ville) VALUES ('$nom', '$prenom', '$adresseMail', '$mdp', $numTel, '$adresse', '$ville' );";
+            //$result2 = $conn->query($sql2);
+
+            $stmt = $conn->prepare("INSERT INTO Usager (Nom, Prenom, AdresseMail, Mdp, NumTel, Adresse, Ville) VALUES(?,?,?,?,?,?,?)");
+            $stmt->bind_param("ssssiss",$nom, $prenom, $adresseMail, $mdp, $numTel ,$adresse, $ville);
+            $result2 = $stmt->execute();
 
 
             if($result2){

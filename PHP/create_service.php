@@ -103,9 +103,9 @@ if (isset($_POST['Titre']) && isset($_POST['DateExecution']) && isset($_POST['De
     // mysqli inserting a new row
 
     //INSERT INTO Service(Titre, DateExecution, Description, Lieu, DateMisenL, UsagerId, DateValidation, ModId ) VALUES('test', '2018-02-22 00-00-00', 'test', 'test' , '2018-02-22 00-00-00', 1 , '2018-02-22 00-00-00', 1)
-    $stmt = $link->prepare("INSERT INTO Service(Titre, DateExecution, Description, Lieu, DateMisenL, UsagerId ) VALUES(?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO Service(Titre, DateExecution, Description, Lieu, DateMisenL, UsagerId ) VALUES(?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssssi", $titre, $dateExecution, $description, $lieu, $dateMisenL, $usagerId);
-    $stmt->execute();
+    $result = $stmt->execute();
 
 
  

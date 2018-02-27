@@ -57,9 +57,9 @@ if ( isset($_GET['NomCatProd']) ){
 
     //INSERT INTO CategorieProd(NomCatProd ) VALUES('test')
 
-    $stmt = $link->prepare("INSERT INTO CategorieProd(NomCatProd) VALUES (?)");
+    $stmt = $conn->prepare("INSERT INTO CategorieProd(NomCatProd) VALUES (?)");
     $stmt->bind_param("s", $nomCatProd);
-    $stmt->execute();
+    $result = $stmt->execute();
 
  
     // check if row inserted or not

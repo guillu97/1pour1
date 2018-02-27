@@ -50,18 +50,21 @@ if (isset($_POST['Nom']) && isset($_POST['Marque']) && isset($_POST['Description
     $usagerId = $_POST['UsagerId'];
 
 
+
     // get the date in year-month-day hour:min:second     i.e.  2018-02-06 12:52:46
     date_default_timezone_set('Europe/Paris');
     $dateMisenL = date("Y-m-d H:i:s");
  
    
  
-
+    //$sql = "INSERT INTO Produit(Nom, Marque, Description, Age, DateMisenL, UsagerId ) VALUES('$nom', '$marque', '$description', '$age', '$dateMisenL' ,'$usagerId')";
+    //    $result = $conn->query($sql);
 
     // mysqli inserting a new row
-    $stmt = $link->prepare("INSERT INTO Produit(Nom, Marque, Description, Age, DateMisenL, UsagerId ) VALUES(?,?,?,?,?,?)");
+    $stmt = $conn->prepare("INSERT INTO Produit(Nom, Marque, Description, Age, DateMisenL, UsagerId ) VALUES(?,?,?,?,?,?)");
     $stmt->bind_param("sssisi",$nom, $marque, $description, $age, $dateMisenL ,$usagerId);
-    $stmt->execute();
+    $result = $stmt->execute();
+
 
  
     // check if row inserted or not
