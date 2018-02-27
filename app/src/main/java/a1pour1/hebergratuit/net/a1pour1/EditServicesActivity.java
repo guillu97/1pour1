@@ -61,8 +61,8 @@ public class EditServicesActivity extends AppCompatActivity {
 
 
 
-    TimePickerFragment timeFragment = new TimePickerFragment();
-    DatePickerFragment dateFragment = new DatePickerFragment();
+    TimePickerFragment timeFragment;
+    DatePickerFragment dateFragment;
 
 
     @Override
@@ -84,9 +84,10 @@ public class EditServicesActivity extends AppCompatActivity {
         new EditServicesActivity.GetServiceDetails().execute();
 
 
+        timeFragment = new TimePickerFragment();
+        dateFragment = new DatePickerFragment();
 
 
-        
 
         // Create button
 

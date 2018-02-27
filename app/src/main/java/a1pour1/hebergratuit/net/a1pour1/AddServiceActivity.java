@@ -46,8 +46,8 @@ public class AddServiceActivity extends AppCompatActivity implements LoaderManag
     private static final String TAG_SUCCESS = "success";
 
 
-    TimePickerFragment timeFragment = new TimePickerFragment();
-    DatePickerFragment dateFragment = new DatePickerFragment();
+    TimePickerFragment timeFragment;
+    DatePickerFragment dateFragment;
 
 
 
@@ -74,6 +74,10 @@ public class AddServiceActivity extends AppCompatActivity implements LoaderManag
         inputServiceDescription = findViewById(R.id.inputServiceDescription);
         populateAutoComplete();
 
+
+
+        timeFragment = new TimePickerFragment();
+        dateFragment = new DatePickerFragment();
 
 
         // Create button

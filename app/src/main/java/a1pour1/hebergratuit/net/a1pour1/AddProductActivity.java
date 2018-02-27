@@ -1,10 +1,14 @@
 package a1pour1.hebergratuit.net.a1pour1;
 
+import android.app.LoaderManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.Loader;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +22,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddProductActivity extends AppCompatActivity {
+public class AddProductActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
     // Progress Dialog
     private ProgressDialog pDialog;
@@ -60,9 +64,79 @@ public class AddProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // creating new product in background thread
-                new AddProductActivity.CreateNewProduct().execute();
+                //new AddProductActivity.CreateNewProduct().execute();
+                attemptCreateProduct();
             }
         });
+    }
+
+    private void attemptCreateProduct() {
+        // Reset errors.
+        inputProductName.setError(null);
+        inputProductBrand.setError(null);
+        inputProductDescription.setError(null);
+        inputProductAge.setError(null);
+
+        // Store values at the time of the attempt to create the service.
+        String name = inputProductName.getText().toString();
+        String brand= inputProductBrand.getText().toString();
+        String description = inputProductDescription.getText().toString();
+        String age = inputProductAge.getText().toString();
+
+        boolean cancel = false;
+        View focusView = null;
+
+
+
+        // Check for a non empty title.
+        if (TextUtils.isEmpty(name)) {
+            inputProductName.setError(getString(R.string.error_field_required));
+            focusView = inputProductName;
+            cancel = true;
+        }
+        // Check for a non empty adresse.
+        if (TextUtils.isEmpty(brand)) {
+            inputProductBrand.setError(getString(R.string.error_field_required));
+            focusView = inputProductBrand;
+            cancel = true;
+        }
+        // Check for a non empty description.
+        if (TextUtils.isEmpty(description)) {
+            inputProductDescription.setError(getString(R.string.error_field_required));
+            focusView = inputProductDescription;
+            cancel = true;
+        }
+        // Check for a non empty description.
+        if (TextUtils.isEmpty(age)) {
+            inputProductAge.setError(getString(R.string.error_field_required));
+            focusView = inputProductAge;
+            cancel = true;
+        }
+
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
+            // kick off a background task to
+            // perform the create service attempt.
+            new AddProductActivity.CreateNewProduct().execute();
+        }
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
     }
 
     /**
