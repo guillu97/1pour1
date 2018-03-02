@@ -146,14 +146,14 @@ public class EditServicesActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(EditServicesActivity.this);
-            pDialog.setMessage("Loading product details. Please wait...");
+            pDialog.setMessage("Loading service details. Please wait...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();
         }
 
         /**
-         * Getting product details in background thread
+         * Getting service's details in background thread
          * */
         protected String doInBackground(String... params) {
 

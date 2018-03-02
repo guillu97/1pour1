@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Name Label -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="10dip"
+            android:text="@string/text_your_name"
+            android:textAlignment="center"
+            android:textSize="17dip"
+            />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NOM A METTRE"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/textBrand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            tools:text="@string/text_brand" />
+
+        <TextView
+            android:id="@+id/displayBrand"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_margin="5dip"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:hint="@string/text_brand"
+            android:singleLine="true"
+            />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="10dip"
+            android:text="@string/text_age"
+            android:textAlignment="center"
+            android:textSize="17dip"
+            />
+
+        <TextView
+            android:id="@+id/displayAge"
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:layout_margin="5dip"
+            android:layout_marginBottom="52dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:hint="@string/text_age"
+            android:inputType="number"
+            android:singleLine="true"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="10dip"
+            android:text="Description"
+            android:textAlignment="center"
+            android:textSize="17dip"
+            />
+
+        <TextView
+            android:id="@+id/displayDescription"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:layout_marginBottom="60dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="top"
+            android:hint="@string/text_description"
+            android:inputType="textMultiLine"
+            android:lines="4"
+            />
+
+        <Button
+            android:id="@+id/btnPostuleProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="Apply"
+            />
+
+    </LinearLayout>
+
+    <!-- Input Name -->
+
+    <!-- Price Label -->
+
+    <!-- Input Price -->
+
+    <!-- Description Label -->
+
+    <!-- Input description -->
+
+    <!-- Button Create Product -->
+
+    <!-- Button Create Product -->
+
+</android.support.constraint.ConstraintLayout>

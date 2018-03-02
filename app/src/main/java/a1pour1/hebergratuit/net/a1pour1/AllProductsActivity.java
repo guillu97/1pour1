@@ -88,7 +88,7 @@ public class AllProductsActivity extends ListActivity {
 
         // on selecting single product
         // launching Edit Product Screen
-        /*
+
         lv.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
@@ -100,7 +100,7 @@ public class AllProductsActivity extends ListActivity {
 
                 // Starting new intent
                 Intent in = new Intent(getApplicationContext(),
-                        EditProductActivity.class);
+                        activity_postule_product.class);
                 // sending pid to next activity
                 in.putExtra(TAG_PID, pid);
 
@@ -108,7 +108,7 @@ public class AllProductsActivity extends ListActivity {
                 startActivityForResult(in, 100);
             }
         });
-        */
+
 
     }
 
