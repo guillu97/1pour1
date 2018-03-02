@@ -11,7 +11,7 @@ $response = array();
  
 // include db connect class
 require_once "db_connect.php";
- 
+include_once "Secu.php";
 // connecting to db
 $db = new DB();
 $conn = $db->connect();
@@ -32,7 +32,7 @@ if (isset($_POST["AdresseMail"]) && isset($_POST["Mdp"])) {
 
     $adresseMail = $_POST["AdresseMail"];
     $mdp = $_POST["Mdp"];
- 
+    $mdp = Secu::cryptage($mdp);
     // get the user's info from usager table
     //SELECT * FROM Usager WHERE AdresseMail = 'test@test' AND Mdp = 'test12345';
     $sql = "SELECT * FROM Usager WHERE AdresseMail = '$adresseMail' AND Mdp = '$mdp';";

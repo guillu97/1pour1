@@ -9,6 +9,7 @@
 $response = array();
 
 // include db connect class
+include_once "Secu.php";
 require_once "db_connect.php";
 
 // connecting to db
@@ -26,14 +27,14 @@ if (isset($_POST['AdresseMail']) && isset($_POST['Mdp'])) {
 
     $adresseMail = $_POST['AdresseMail'];
     $mdp = $_POST['Mdp'];
-
-
-
+    //echo "Before";
+    $mdp = Secu::cryptage($mdp);
+    //echo "After";
  
 
  
     // mysql update row with matched pid
-    $sql = "SELECT * FROM Usager WHERE AdresseMail = '$adresseMail' and Mdp = '$mdp'";
+    $sql = "SELECT * FROM Usager WHERE AdresseMail = '$adresseMail' and Mdp = '$mdp';";
     $result = $conn->query($sql);
  
     // check if row inserted or not
@@ -50,8 +51,7 @@ if (isset($_POST['AdresseMail']) && isset($_POST['Mdp'])) {
  
 	        // failed update
 	        $response["success"] = 0;
-	        $response["message"] = " 1 failed to login";
-
+	        $response["message"] = " 1 failed to login ";
 	        // echoing JSON response
         	echo json_encode($response);
     	}
