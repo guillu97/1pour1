@@ -19,7 +19,9 @@ $conn = $db->connect();
  
 // get all products from products table
 
-$sql = "SELECT * FROM Produit";
+
+
+$sql = "SELECT * FROM Produit WHERE ProduitId NOT IN ( SELECT DISTINCT ProduitId FROM DemandeU_P);";
 $result = $conn->query($sql);
 
 

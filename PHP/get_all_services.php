@@ -18,7 +18,7 @@ $conn = $db->connect();
  
 // get all products from products table
 
-$sql = "SELECT * FROM Service";
+$sql = "SELECT * FROM Service WHERE ServiceId NOT IN (SELECT DISTINCT ServiceId FROM DemandeU_S);";
 $result = $conn->query($sql);
 
 

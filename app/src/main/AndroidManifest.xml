@@ -36,13 +36,27 @@
 
         <!-- All Product Activity -->
         <activity
-            android:name=".AllProductsActivity"
+        android:name=".AllProductsActivity"
+        android:label="All Products"
+        android:parentActivityName=".MainScreenActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainScreenActivity" />
+        </activity>
+
+
+
+
+        <activity
+            android:name=".activity_postule_product"
             android:label="All Products"
-            android:parentActivityName=".MainScreenActivity">
+            android:parentActivityName=".AllProductsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainScreenActivity" />
+                android:value=".AllProductsActivity" />
         </activity>
+
+
 
         <!-- All Service Activity -->
         <activity
@@ -53,6 +67,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainScreenActivity" />
         </activity>
+
+
+        <activity
+            android:name=".Activity_postule_service"
+            android:label="All Services"
+            android:parentActivityName=".AllServicesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AllServicesActivity" />
+        </activity>
+
+
 
         <!-- All My Services and Products Activity -->
         <activity

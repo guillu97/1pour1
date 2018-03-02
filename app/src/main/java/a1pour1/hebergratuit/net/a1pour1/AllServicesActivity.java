@@ -86,7 +86,7 @@ public class AllServicesActivity extends ListActivity {
 
         // on selecting single product
         // launching Edit Product Screen
-        /*
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -98,7 +98,7 @@ public class AllServicesActivity extends ListActivity {
 
                 // Starting new intent
                 Intent in = new Intent(getApplicationContext(),
-                        EditProductActivity.class);
+                        Activity_postule_service.class);
                 // sending pid to next activity
                 in.putExtra(TAG_SERVICEID, serviceId);
 
@@ -106,7 +106,7 @@ public class AllServicesActivity extends ListActivity {
                 startActivityForResult(in, 100);
             }
         });
-        */
+
 
     }
 
