@@ -157,7 +157,7 @@ public class AddServiceActivity extends AppCompatActivity implements LoaderManag
 
         boolean cancel = false;
         View focusView = null;
-        
+
 
 
         // Check for a non empty title.
